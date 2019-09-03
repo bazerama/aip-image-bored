@@ -1,7 +1,20 @@
 # TerribleOceanMissiles
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This project follows the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0-beta.4/) guidelines.
+This project is [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
+## How to use `yarn`
+Simply use `yarn` wherever you would normally use `npm`... (e.g. `yarn add somepackage`)
+A fast, reliable and secure dependency management package, often known as "the better NPM"
+More information and docs [here](https://yarnpkg.com/lang/en/)
+
+## How to use `commitizen`
+Simply run `yarn commit` and follow the prompts, this should be done for every commit
+### WARNING: if you do not use `yarn commit`, this repo may reject your commits! (and waste your time)
+
+## How to use `semantic-ui-react`
+Semantic UI is a great source of extra components and themes, without having to spend a whole lot of time setting up boilerplate and writing CSS
+To use Semantic UIs components in this repo, please see their [docs](https://react.semantic-ui.com)
 
 ## Branching Strategy
 ### WIP
