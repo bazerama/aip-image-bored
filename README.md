@@ -1,7 +1,7 @@
-# TerribleOceanMissiles
+# TerribleOceanMissiles [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This project is [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+This project is [Commitizen friendly](http://commitizen.github.io/cz-cli/)
 
 ## How to use `yarn`
 Simply use `yarn` wherever you would normally use `npm`... (e.g. `yarn add somepackage`)
