@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 import './HomePage.css';
-import { Menu, Segment, Grid, Container } from 'semantic-ui-react';
+import { Menu, Segment } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 export default class HomePage extends Component {
-    state = { activeItem: 'home' }
+    constructor(props) {
+        super(props);
+        this.loginCallback = this.loginCallback.bind(this);
+    }
+
+    state = {
+        activeItem: 'home',
+        isLoggedIn: false
+    }
+
+    loginCallback = (status) => {
+        this.setState({ isLoggedIn: status });
+    }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
     render() {
         const { activeItem } = this.state
+        const { isLoggedIn } = this.state
         return (
             <div>
-                <Menu pointing secondary>
+                <Menu secondary>
                     <Menu.Item
                         name='home'
                         active={activeItem === 'home'}
@@ -28,16 +42,20 @@ export default class HomePage extends Component {
                         onClick={this.handleItemClick}
                     />
                     <Menu.Menu position='right'>
-                        <Menu.Item
-                            name='logout'
-                            active={activeItem === 'logout'}
-                            onClick={this.handleItemClick}
-                        />
+                        {isLoggedIn ? (
+                            <Menu.Item as={Link} to="/logout">
+                                Logout
+                            </Menu.Item>
+                        ) : (
+                            <Menu.Item as={Link} loginCallback={this.loginCallback} to="/login">
+                                Login
+                            </Menu.Item>
+                        )}
                     </Menu.Menu>
                 </Menu>
 
                 <Segment>
-                    <img src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
+                    <img alt="wireframe-media-paragraph" src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
                 </Segment>
             </div>
         )

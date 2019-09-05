@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const DataSchema = new Schema(
+const User = new Schema(
     {
         id: Number,
-        message: String
+        username: String,
+        password: String
     },
     { timestamps: true }
 );
 
-module.exports = mongoose.model("Data", DataSchema);
+module.exports = mongoose.model("User", User);

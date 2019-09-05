@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import HomePage from './components/HomePage';
+import LoginPage from './components/LoginPage';
 import ReactTestPage from './components/ReactTestPage';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-function App() {
-  return (
-    <Router>
-        <HomePage default path="/" />
-        <ReactTestPage path="/testpage" />
-    </Router>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/testpage" component={ReactTestPage} />
+      </Router>
+    )
+  }
 }
 
 export default App;
