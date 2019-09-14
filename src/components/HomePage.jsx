@@ -7,6 +7,7 @@ export default class HomePage extends Component {
     constructor(props) {
         super(props);
         this.loginCallback = this.loginCallback.bind(this);
+        this.registerCallback = this.registerCallback.bind(this);
     }
 
     state = {
@@ -16,6 +17,9 @@ export default class HomePage extends Component {
 
     loginCallback = (status) => {
         this.setState({ isLoggedIn: status });
+    }
+    registerCallback = (status) => {
+        this.setState({ isRegisterd: status });
     }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -41,6 +45,10 @@ export default class HomePage extends Component {
                         active={activeItem === 'friends'}
                         onClick={this.handleItemClick}
                     />
+
+                    <Menu.Item as={Link} registerCallback={this.registerCallback} to="/register">
+                                Register
+                            </Menu.Item>
                     <Menu.Menu position='right'>
                         {isLoggedIn ? (
                             <Menu.Item as={Link} to="/logout">
