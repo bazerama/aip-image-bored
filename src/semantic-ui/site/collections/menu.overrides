@@ -1,3 +1,6 @@
 /*******************************
          Site Overrides
 *******************************/
+.ui.inverted.menu .spacer.item {
+    padding: 0;
+}

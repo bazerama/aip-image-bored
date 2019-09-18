@@ -1,7 +1,13 @@
 /*******************************
          Site Overrides
 *******************************/
+
 .ui.huge.header {
     min-width: 50%;
     max-width: 100%;
+}
+
+.ui.blue.header {
+    color: #000000 !important;
+    margin-bottom: 0;
 }

@@ -1,6 +1,8 @@
 /*******************************
          Site Overrides
 *******************************/
+
 .ui.grid {
+    background-color: #FFFFFF !important;
     margin: 0;
 }
