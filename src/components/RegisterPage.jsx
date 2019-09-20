@@ -15,7 +15,7 @@ export default class RegisterPage extends Component {
         };
     }
     validateForm() {
-        return this.state.username.length > 0 && this.state.password.length > 0 && this.state.email.length > 0 && this.state.dob.length > 0;
+        return this.state.username.length > 0 && this.state.password.length > 0 && this.state.email.length > 0;
     }
     handleError = () => {
         this.setState({ registerError: true })
@@ -48,9 +48,9 @@ export default class RegisterPage extends Component {
                                 <Label pointing prompt={!this.validateForm()} >
                                     Please enter a password
                                 </Label>
-                                <Input id="emial" placeholder="Email" onChange={this.handleChange} type="email" value={this.state.email} />
+                                <Input id="email" placeholder="Email" onChange={this.handleChange} type="email" value={this.state.email} />
                                 <Label pointing prompt={!this.validateForm()} >
-                                    Please enter a Email
+                                    Please enter an email address
                                 </Label>
                             </Form.Field>
                         </Form>
@@ -59,13 +59,15 @@ export default class RegisterPage extends Component {
                         </Button>
                         {registerError ? (
                             <Message negative>
-                                <Message.Header>Error Registering</Message.Header>
+                                <Message.Header>Error registering...</Message.Header>
+                                <p>Please try again</p>
                             </Message>
                         ) : null}
                         {registerSuccessful ? (
                             <Message>
-                            <Message.Header>Successfully Registered!</Message.Header>
-                        </Message>
+                                <Message.Header>User successfully registered!</Message.Header>
+                                <p>You will now be redirected to the front page</p>
+                            </Message>
                         ) : null}
                     </Card>
                 </Container>

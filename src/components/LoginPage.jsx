@@ -25,13 +25,10 @@ export default class LoginPage extends Component {
 
     handleSubmit = async event => {
         event.preventDefault();
-        console.log("sending request")
-        // does the login logic then sends callback
         const response = await axios.post("http://localhost:5000/api/login", {
             "username": this.state.username,
             "password": this.state.password
         });
-        console.log("sent request, got " + response.data.success)
         if (response.data.success) {
             this.setState({ loginSuccessful: true })
             setTimeout(() => {
@@ -60,17 +57,17 @@ export default class LoginPage extends Component {
                     <Card centered={true} classname="LoginPage-Card">
                         <Form>
                             <Form.Field>
-                                <Input id="username" placeholder="Username" onChange={this.handleChange} type="username" value={this.state.username} />
-                                <Label pointing prompt={!this.validateForm()} >
+                                <Input id="username" placeholder="Username" onChange={this.handleChange}type="username" value={this.state.username} size='large' />
+                                <Label pointing prompt={!this.validateForm()} size='large' >
                                     Please enter a username
                                 </Label>
-                                <Input id="password" placeholder="Password" onChange={this.handleChange} type="password" value={this.state.password} />
-                                <Label pointing prompt={!this.validateForm()} >
+                                <Input id="password" placeholder="Password" onChange={this.handleChange} type="password" value={this.state.password} size='large' />
+                                <Label pointing prompt={!this.validateForm()} size='large' >
                                     Please enter a password
                                 </Label>
                             </Form.Field>
                         </Form>
-                        <Button disabled={!this.validateForm()} onClick={this.handleSubmit} secondary>
+                        <Button disabled={!this.validateForm()} onClick={this.handleSubmit} secondary size='large'>
                             Submit
                         </Button>
                         {loginError ? (
