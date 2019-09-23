@@ -13,26 +13,26 @@ app.use(bodyParser.json());
 
 // MongoDB database
 const CONNECTION_URL =
-  'mongodb+srv://admin:7s53Z6xx81lbIVsc@terribleoceanmissiles-qpjhz.mongodb.net/test?retryWrites=true&w=majority';
-const DATABASE_NAME = "users-db";
-const COLLECTION_NAME = "users";
+    'mongodb+srv://admin:7s53Z6xx81lbIVsc@terribleoceanmissiles-qpjhz.mongodb.net/test?retryWrites=true&w=majority';
+const DATABASE_NAME = 'users-db';
+const COLLECTION_NAME = 'users';
 
 var database, collection;
 
 router.get('/hello', (req, res) => {
-  res.send({ express: 'Hello from the Express API' });
+    res.send({ express: 'Hello from the Express API' });
 });
 
 router.post('/login', (req, res) => {
-  collection.find({ username: req.body.username }).toArray((err, data) => {
-    if (err) return res.json({ success: false, error: err });
-    if (data.length > 0) {
-      if (data[0].password == req.body.password) {
-        return res.json({ success: true, data: data[0] });
-      }
-    }
-    return res.json({ success: false, error: "no results" });
-  });
+    collection.find({ username: req.body.username }).toArray((err, data) => {
+        if (err) return res.json({ success: false, error: err });
+        if (data.length > 0) {
+            if (data[0].password == req.body.password) {
+                return res.json({ success: true, data: data[0] });
+            }
+        }
+        return res.json({ success: false, error: 'no results' });
+    });
 });
 
 /*
@@ -84,12 +84,12 @@ app.use('/api', router);
 
 // launch backend
 app.listen(API_PORT, () => {
-  MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
-      if(error) {
-          throw error;
-      }
-      database = client.db(DATABASE_NAME);
-      collection = database.collection(COLLECTION_NAME);
-      console.log("Connected to `" + DATABASE_NAME + "`!");
-  });
+    MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
+        if (error) {
+            throw error;
+        }
+        database = client.db(DATABASE_NAME);
+        collection = database.collection(COLLECTION_NAME);
+        console.log('Connected to `' + DATABASE_NAME + '`!');
+    });
 });

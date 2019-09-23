@@ -23,47 +23,64 @@ export default class HomePage extends Component {
 
     state = {
         activeItem: 'home',
-        isLoggedIn: false
-    }
+        isLoggedIn: false,
+    };
 
-    loginCallback = (status) => {
+    loginCallback = status => {
         this.setState({ isLoggedIn: status });
-    }
-    registerCallback = (status) => {
+    };
+    registerCallback = status => {
         this.setState({ isRegisterd: status });
-    }
+    };
 
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+    handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
     render() {
-        const { activeItem } = this.state
-        const { isLoggedIn } = this.state
+        const { activeItem } = this.state;
+        const { isLoggedIn } = this.state;
         return (
             <div>
                 <Grid stackable>
-                    <Grid.Row columns='3'>
-                        <Grid.Column verticalAlign='middle' textAlign='left'>
-                            <Button size='huge' name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
+                    <Grid.Row columns="3">
+                        <Grid.Column verticalAlign="middle" textAlign="left">
+                            <Button
+                                size="huge"
+                                name="home"
+                                active={activeItem === 'home'}
+                                onClick={this.handleItemClick}
+                            >
                                 Home
                             </Button>
-                            <Button size='huge' name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick}>
+                            <Button
+                                size="huge"
+                                name="messages"
+                                active={activeItem === 'messages'}
+                                onClick={this.handleItemClick}
+                            >
                                 Messages
                             </Button>
                         </Grid.Column>
-                        <Grid.Column verticalAlign='middle' textAlign='center' as={Link} to="/">
-                            <Header color='blue' textAlign='center' size='huge'>Image Bored™</Header>
+                        <Grid.Column verticalAlign="middle" textAlign="center" as={Link} to="/">
+                            <Header color="blue" textAlign="center" size="huge">
+                                Image Bored™
+                            </Header>
                         </Grid.Column>
-                        <Grid.Column verticalAlign='middle' textAlign='right'>
+                        <Grid.Column verticalAlign="middle" textAlign="right">
                             {isLoggedIn ? (
-                                <Button size='huge' as={Link} to="/logout" position='right'>
+                                <Button size="huge" as={Link} to="/logout" position="right">
                                     Logout
                                 </Button>
                             ) : (
                                 <React.Fragment>
-                                    <Button size='huge' as={Link} loginCallback={this.loginCallback} to="/login">
+                                    <Button size="huge" as={Link} loginCallback={this.loginCallback} to="/login">
                                         Login
                                     </Button>
-                                    <Button size='huge' as={Link} registerCallback={this.registerCallback} to="/register">
+                                    <Button
+                                        size="huge"
+                                        as={Link}
+                                        registerCallback={this.registerCallback}
+                                        to="/register"
+                                    >
                                         Register
                                     </Button>
                                 </React.Fragment>
@@ -72,7 +89,7 @@ export default class HomePage extends Component {
                     </Grid.Row>
                 </Grid>
                 <Container classname="HomePage-Container">
-                    <Grid container celled='internally'>
+                    <Grid container celled="internally">
                         <Grid.Column width={12}>
                             <Card.Group>
                                 <Card fluid>
@@ -81,23 +98,53 @@ export default class HomePage extends Component {
                                         <Card.Description>Posted by u/bazerama 1 day ago</Card.Description>
                                     </Card.Content>
                                     <Card.Content extra>
-                                        <div className='reaction-div' name='reaction1-div' onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}>
-                                            <Label color='reaction' image={reaction1}></Label>
+                                        <div
+                                            className="reaction-div"
+                                            name="reaction1-div"
+                                            onMouseEnter={this.handleMouseHover}
+                                            onMouseLeave={this.handleMouseHover}
+                                        >
+                                            <Label color="reaction" image={reaction1}></Label>
                                         </div>
-                                        <div className='reaction-div' name='reaction2-div' onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}>
-                                            <Label color='reaction' image={reaction2}></Label>
+                                        <div
+                                            className="reaction-div"
+                                            name="reaction2-div"
+                                            onMouseEnter={this.handleMouseHover}
+                                            onMouseLeave={this.handleMouseHover}
+                                        >
+                                            <Label color="reaction" image={reaction2}></Label>
                                         </div>
-                                        <div className='reaction-div' name='reaction3-div' onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}>
-                                            <Label color='reaction' image={reaction3}></Label>
+                                        <div
+                                            className="reaction-div"
+                                            name="reaction3-div"
+                                            onMouseEnter={this.handleMouseHover}
+                                            onMouseLeave={this.handleMouseHover}
+                                        >
+                                            <Label color="reaction" image={reaction3}></Label>
                                         </div>
-                                        <div className='reaction-div' name='reaction4-div' onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}>
-                                            <Label color='reaction' image={reaction4}></Label>
+                                        <div
+                                            className="reaction-div"
+                                            name="reaction4-div"
+                                            onMouseEnter={this.handleMouseHover}
+                                            onMouseLeave={this.handleMouseHover}
+                                        >
+                                            <Label color="reaction" image={reaction4}></Label>
                                         </div>
-                                        <div className='reaction-div' name='reaction5-div' onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}>
-                                            <Label color='reaction' image={reaction5}></Label>
+                                        <div
+                                            className="reaction-div"
+                                            name="reaction5-div"
+                                            onMouseEnter={this.handleMouseHover}
+                                            onMouseLeave={this.handleMouseHover}
+                                        >
+                                            <Label color="reaction" image={reaction5}></Label>
                                         </div>
-                                        <div className='reaction-div' name='reaction6-div' onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}>
-                                            <Label color='reaction' image={reaction6}></Label>
+                                        <div
+                                            className="reaction-div"
+                                            name="reaction6-div"
+                                            onMouseEnter={this.handleMouseHover}
+                                            onMouseLeave={this.handleMouseHover}
+                                        >
+                                            <Label color="reaction" image={reaction6}></Label>
                                         </div>
                                     </Card.Content>
                                 </Card>
@@ -107,7 +154,7 @@ export default class HomePage extends Component {
                                         <Card.Description>Posted by u/bazerama 2 days ago</Card.Description>
                                     </Card.Content>
                                     <Card.Content extra>
-                                        <Icon name='reaction'></Icon>
+                                        <Icon name="reaction"></Icon>
                                     </Card.Content>
                                 </Card>
                                 <Card fluid>
@@ -116,7 +163,7 @@ export default class HomePage extends Component {
                                         <Card.Description>Posted by u/bazerama 3 days ago</Card.Description>
                                     </Card.Content>
                                     <Card.Content extra>
-                                        <Icon name='reaction'></Icon>
+                                        <Icon name="reaction"></Icon>
                                     </Card.Content>
                                 </Card>
                                 <Card fluid>
@@ -125,7 +172,7 @@ export default class HomePage extends Component {
                                         <Card.Description>Posted by u/bazerama 4 days ago</Card.Description>
                                     </Card.Content>
                                     <Card.Content extra>
-                                        <Icon name='reaction'></Icon>
+                                        <Icon name="reaction"></Icon>
                                     </Card.Content>
                                 </Card>
                                 <Card fluid>
@@ -134,33 +181,55 @@ export default class HomePage extends Component {
                                         <Card.Description>Posted by u/bazerama 5 days ago</Card.Description>
                                     </Card.Content>
                                     <Card.Content extra>
-                                        <Icon name='reaction'></Icon>
+                                        <Icon name="reaction"></Icon>
                                     </Card.Content>
                                 </Card>
                             </Card.Group>
                         </Grid.Column>
                         <Grid.Column width={4}>
-                            <Header textAlign='left' size='large'>Leaderboard</Header>
+                            <Header textAlign="left" size="large">
+                                Leaderboard
+                            </Header>
                             <Grid.Column>
                                 <Menu vertical>
-                                    <Menu.Item name='userFirst' active={activeItem === 'userFirst'} onClick={this.handleItemClick}>
-                                        <Label color='gold'>1st</Label>
+                                    <Menu.Item
+                                        name="userFirst"
+                                        active={activeItem === 'userFirst'}
+                                        onClick={this.handleItemClick}
+                                    >
+                                        <Label color="gold">1st</Label>
                                         UsernameHere
                                     </Menu.Item>
-                                    <Menu.Item name='userSecond' active={activeItem === 'userSecond'} onClick={this.handleItemClick}>
-                                        <Label color='silver'>2nd</Label>
+                                    <Menu.Item
+                                        name="userSecond"
+                                        active={activeItem === 'userSecond'}
+                                        onClick={this.handleItemClick}
+                                    >
+                                        <Label color="silver">2nd</Label>
                                         UsernameHere
                                     </Menu.Item>
-                                    <Menu.Item name='userThird' active={activeItem === 'userThird'} onClick={this.handleItemClick}>
-                                        <Label color='bronze'>3rd</Label>
+                                    <Menu.Item
+                                        name="userThird"
+                                        active={activeItem === 'userThird'}
+                                        onClick={this.handleItemClick}
+                                    >
+                                        <Label color="bronze">3rd</Label>
                                         UsernameHere
                                     </Menu.Item>
-                                    <Menu.Item name='userFourth' active={activeItem === 'userFourth'} onClick={this.handleItemClick}>
-                                        <Label color='leaderboard'>4th</Label>
+                                    <Menu.Item
+                                        name="userFourth"
+                                        active={activeItem === 'userFourth'}
+                                        onClick={this.handleItemClick}
+                                    >
+                                        <Label color="leaderboard">4th</Label>
                                         UsernameHere
                                     </Menu.Item>
-                                    <Menu.Item name='userFifth' active={activeItem === 'userFifth'} onClick={this.handleItemClick}>
-                                        <Label color='leaderboard'>5th</Label>
+                                    <Menu.Item
+                                        name="userFifth"
+                                        active={activeItem === 'userFifth'}
+                                        onClick={this.handleItemClick}
+                                    >
+                                        <Label color="leaderboard">5th</Label>
                                         UsernameHere
                                     </Menu.Item>
                                 </Menu>
@@ -169,6 +238,6 @@ export default class HomePage extends Component {
                     </Grid>
                 </Container>
             </div>
-        )
+        );
     }
 }
