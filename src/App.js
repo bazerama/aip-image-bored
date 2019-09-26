@@ -9,20 +9,9 @@ class App extends Component {
   render() {
     return (
       <Router history={history}>
-        <Route
-          exact
-          path="/"
-          component={HomePage}
-          //render={(props) => <HomePage {...props} isAuthed={authenticateAction}/>}
-        />
-        <Route
-          path="/login"
-          component={LoginPage}
-        />
-        <Route
-          path="/register"
-          component={RegisterPage}
-        />
+        <Route exact path="/" component={HomePage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/register" component={RegisterPage} />
       </Router>
     )
   }
