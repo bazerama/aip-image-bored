@@ -7,48 +7,68 @@ export default class RegisterPage extends Component {
         this.state = {
             registerError: false,
             registerSuccessful: false,
-            username: "",
-            password: "",
-            email: "",
-            dob: "",
+            username: '',
+            password: '',
+            email: '',
+            dob: '',
         };
     }
     validateForm() {
         return this.state.username.length > 0 && this.state.password.length > 0 && this.state.email.length > 0;
     }
     handleError = () => {
-        this.setState({ registerError: true })
+        this.setState({ registerError: true });
         setTimeout(() => {
-            this.setState({ registerError: false })
-        }, 4000)
-    }
+            this.setState({ registerError: false });
+        }, 4000);
+    };
 
     handleChange = event => {
         this.setState({
-          [event.target.id]: event.target.value
+            [event.target.id]: event.target.value,
         });
-    }
+    };
 
     render() {
-        const { registerError } = this.state
-        const { registerSuccessful } = this.state
+        const { registerError } = this.state;
+        const { registerSuccessful } = this.state;
         return (
             <div>
                 <Container>
-                    <Header textAlign='center' size='huge'>Register</Header>
+                    <Header textAlign="center" size="huge">
+                        Register
+                    </Header>
                     <Card centered={true}>
                         <Form>
                             <Form.Field>
-                                <Input id="username" placeholder="Username" onChange={this.handleChange} type="username" value={this.state.username} />
-                                <Label pointing prompt={!this.validateForm()} >
+                                <Input
+                                    id="username"
+                                    placeholder="Username"
+                                    onChange={this.handleChange}
+                                    type="username"
+                                    value={this.state.username}
+                                />
+                                <Label pointing prompt={!this.validateForm()}>
                                     Please enter a username
                                 </Label>
-                                <Input id="password" placeholder="Password" onChange={this.handleChange} type="password" value={this.state.password} />
-                                <Label pointing prompt={!this.validateForm()} >
+                                <Input
+                                    id="password"
+                                    placeholder="Password"
+                                    onChange={this.handleChange}
+                                    type="password"
+                                    value={this.state.password}
+                                />
+                                <Label pointing prompt={!this.validateForm()}>
                                     Please enter a password
                                 </Label>
-                                <Input id="email" placeholder="Email" onChange={this.handleChange} type="email" value={this.state.email} />
-                                <Label pointing prompt={!this.validateForm()} >
+                                <Input
+                                    id="email"
+                                    placeholder="Email"
+                                    onChange={this.handleChange}
+                                    type="email"
+                                    value={this.state.email}
+                                />
+                                <Label pointing prompt={!this.validateForm()}>
                                     Please enter an email address
                                 </Label>
                             </Form.Field>
@@ -71,6 +91,6 @@ export default class RegisterPage extends Component {
                     </Card>
                 </Container>
             </div>
-        )
+        );
     }
 }

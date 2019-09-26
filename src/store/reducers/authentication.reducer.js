@@ -1,6 +1,6 @@
-export const AUTHENTICATION_SUCESS = "authentication-success";
-export const AUTHENTICATION_FAILURE = "authentication-failure";
-export const LOGOUT = "logout";
+export const AUTHENTICATION_SUCESS = 'authentication-success';
+export const AUTHENTICATION_FAILURE = 'authentication-failure';
+export const LOGOUT = 'logout';
 
 let user = JSON.parse(localStorage.getItem('user'));
 const initialState = user ? { isLoggedIn: true, user } : { isLoggedIn: false };
@@ -9,15 +9,15 @@ function authentication(state = initialState, action) {
     switch (action.type) {
         case AUTHENTICATION_SUCESS:
             return {
-                isLoggedIn: true
+                isLoggedIn: true,
             };
         case AUTHENTICATION_FAILURE:
             return {
-                isLoggedIn: false
+                isLoggedIn: false,
             };
         case LOGOUT:
             return {
-                isLoggedIn: false
+                isLoggedIn: false,
             };
         default:
             return state;
