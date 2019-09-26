@@ -2,14 +2,14 @@
          Site Overrides
 *******************************/
 
-.ui.reaction.label > img {
+.ui.black.label > img {
     width: auto !important;
     height: 2.0666em !important;
-    transition: height 0.4s;
+    transition: height 0.13s;
     transition-timing-function: linear;
 }
 
-.ui.reaction.label > img:hover {
+.ui.black.label > img:hover {
     height: 6.0666em !important;
 }
 
@@ -20,30 +20,30 @@
     margin-bottom: 10px;
 }
 
-.ui.leaderboard.label {
+.ui.grey.label {
     background-color: #FFFFFF !important;
     border-color: #FFFFFF !important;
     color: #000000 !important;
     width: 25%;
 }
 
-.ui.gold.label {
-    background-color: #FFD700 !important;
-    border-color: #FFD700 !important;
+.ui.brown.label {
+    background-color: @gold !important;
+    border-color: @gold !important;
     color: #000000 !important;
     width: 25%;
 }
 
-.ui.silver.label {
-    background-color: #C0C0C0 !important;
-    border-color: #C0C0C0 !important;
+.ui.teal.label {
+    background-color: @silver !important;
+    border-color: @silver !important;
     color: #000000 !important;
     width: 25%;
 }
 
-.ui.bronze.label {
-    background-color: #CD7F32 !important;
-    border-color: #CD7F32 !important;
+.ui.olive.label {
+    background-color: @bronze !important;
+    border-color: @bronze !important;
     color: #000000 !important;
     width: 25%;
 }
