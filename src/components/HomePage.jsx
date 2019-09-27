@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import './HomePage.css';
 import * as image1 from '../resources/c1.jpg';
 import * as image2 from '../resources/c2.jpg';
@@ -11,33 +12,42 @@ import * as reaction3 from '../resources/pogchamp.png';
 import * as reaction4 from '../resources/tb_lul.png';
 import * as reaction5 from '../resources/nick_young_confused.jpg';
 import * as reaction6 from '../resources/peter_parker_cry.jpg';
-import { Container, Header, Menu, Label, Grid, Card, Image, Icon, Button } from 'semantic-ui-react';
+import { Container, Header, Menu, Label, Grid, Card, Image, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { logoutAction, authenticateAction } from '../actions/user.actions';
 
-export default class HomePage extends Component {
+class HomePage extends React.Component {
     constructor(props) {
         super(props);
-        this.loginCallback = this.loginCallback.bind(this);
-        this.registerCallback = this.registerCallback.bind(this);
+        this.state = {
+            activeItem: 'home',
+        };
     }
 
-    state = {
-        activeItem: 'home',
-        isLoggedIn: false,
-    };
+    componentDidMount() {
+        const { dispatch } = this.props;
+        console.log('dispatching auth action');
+        dispatch(authenticateAction());
+    }
 
-    loginCallback = status => {
-        this.setState({ isLoggedIn: status });
-    };
-    registerCallback = status => {
-        this.setState({ isRegisterd: status });
-    };
+    /*componentWillReceiveProps(nextProps) {
+        const { isLoggedIn } = nextProps.isLoggedIn;
+        if (null != isLoggedIn && !isLoggedIn) {
+            console.log("getting props: " + isLoggedIn)
+        }
+    }*/
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
+    handleLogout = event => {
+        const { dispatch } = this.props;
+        event.preventDefault();
+        dispatch(logoutAction());
+    };
+
     render() {
         const { activeItem } = this.state;
-        const { isLoggedIn } = this.state;
+        const { isLoggedIn } = this.props.isLoggedIn;
         return (
             <div>
                 <Grid stackable>
@@ -67,20 +77,15 @@ export default class HomePage extends Component {
                         </Grid.Column>
                         <Grid.Column verticalAlign="middle" textAlign="right">
                             {isLoggedIn ? (
-                                <Button size="huge" as={Link} to="/logout" position="right">
+                                <Button size="huge" onClick={this.handleLogout} position="right">
                                     Logout
                                 </Button>
                             ) : (
                                 <React.Fragment>
-                                    <Button size="huge" as={Link} loginCallback={this.loginCallback} to="/login">
+                                    <Button size="huge" as={Link} to="/login">
                                         Login
                                     </Button>
-                                    <Button
-                                        size="huge"
-                                        as={Link}
-                                        registerCallback={this.registerCallback}
-                                        to="/register"
-                                    >
+                                    <Button size="huge" as={Link} to="/register">
                                         Register
                                     </Button>
                                 </React.Fragment>
@@ -88,7 +93,7 @@ export default class HomePage extends Component {
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
-                <Container classname="HomePage-Container">
+                <Container>
                     <Grid container celled="internally">
                         <Grid.Column width={12}>
                             <Card.Group>
@@ -104,7 +109,7 @@ export default class HomePage extends Component {
                                             onMouseEnter={this.handleMouseHover}
                                             onMouseLeave={this.handleMouseHover}
                                         >
-                                            <Label color="reaction" image={reaction1}></Label>
+                                            <Label color="black" image={reaction1}></Label>
                                         </div>
                                         <div
                                             className="reaction-div"
@@ -112,7 +117,7 @@ export default class HomePage extends Component {
                                             onMouseEnter={this.handleMouseHover}
                                             onMouseLeave={this.handleMouseHover}
                                         >
-                                            <Label color="reaction" image={reaction2}></Label>
+                                            <Label color="black" image={reaction2}></Label>
                                         </div>
                                         <div
                                             className="reaction-div"
@@ -120,7 +125,7 @@ export default class HomePage extends Component {
                                             onMouseEnter={this.handleMouseHover}
                                             onMouseLeave={this.handleMouseHover}
                                         >
-                                            <Label color="reaction" image={reaction3}></Label>
+                                            <Label color="black" image={reaction3}></Label>
                                         </div>
                                         <div
                                             className="reaction-div"
@@ -128,7 +133,7 @@ export default class HomePage extends Component {
                                             onMouseEnter={this.handleMouseHover}
                                             onMouseLeave={this.handleMouseHover}
                                         >
-                                            <Label color="reaction" image={reaction4}></Label>
+                                            <Label color="black" image={reaction4}></Label>
                                         </div>
                                         <div
                                             className="reaction-div"
@@ -136,7 +141,7 @@ export default class HomePage extends Component {
                                             onMouseEnter={this.handleMouseHover}
                                             onMouseLeave={this.handleMouseHover}
                                         >
-                                            <Label color="reaction" image={reaction5}></Label>
+                                            <Label color="black" image={reaction5}></Label>
                                         </div>
                                         <div
                                             className="reaction-div"
@@ -144,7 +149,7 @@ export default class HomePage extends Component {
                                             onMouseEnter={this.handleMouseHover}
                                             onMouseLeave={this.handleMouseHover}
                                         >
-                                            <Label color="reaction" image={reaction6}></Label>
+                                            <Label color="black" image={reaction6}></Label>
                                         </div>
                                     </Card.Content>
                                 </Card>
@@ -153,36 +158,28 @@ export default class HomePage extends Component {
                                     <Card.Content>
                                         <Card.Description>Posted by u/bazerama 2 days ago</Card.Description>
                                     </Card.Content>
-                                    <Card.Content extra>
-                                        <Icon name="reaction"></Icon>
-                                    </Card.Content>
+                                    <Card.Content extra></Card.Content>
                                 </Card>
                                 <Card fluid>
                                     <Image src={image3} wrapped ui={false} />
                                     <Card.Content>
                                         <Card.Description>Posted by u/bazerama 3 days ago</Card.Description>
                                     </Card.Content>
-                                    <Card.Content extra>
-                                        <Icon name="reaction"></Icon>
-                                    </Card.Content>
+                                    <Card.Content extra></Card.Content>
                                 </Card>
                                 <Card fluid>
                                     <Image src={image4} wrapped ui={false} />
                                     <Card.Content>
                                         <Card.Description>Posted by u/bazerama 4 days ago</Card.Description>
                                     </Card.Content>
-                                    <Card.Content extra>
-                                        <Icon name="reaction"></Icon>
-                                    </Card.Content>
+                                    <Card.Content extra></Card.Content>
                                 </Card>
                                 <Card fluid>
                                     <Image src={image5} wrapped ui={false} />
                                     <Card.Content>
                                         <Card.Description>Posted by u/bazerama 5 days ago</Card.Description>
                                     </Card.Content>
-                                    <Card.Content extra>
-                                        <Icon name="reaction"></Icon>
-                                    </Card.Content>
+                                    <Card.Content extra></Card.Content>
                                 </Card>
                             </Card.Group>
                         </Grid.Column>
@@ -197,7 +194,7 @@ export default class HomePage extends Component {
                                         active={activeItem === 'userFirst'}
                                         onClick={this.handleItemClick}
                                     >
-                                        <Label color="gold">1st</Label>
+                                        <Label color="brown">1st</Label>
                                         UsernameHere
                                     </Menu.Item>
                                     <Menu.Item
@@ -205,7 +202,7 @@ export default class HomePage extends Component {
                                         active={activeItem === 'userSecond'}
                                         onClick={this.handleItemClick}
                                     >
-                                        <Label color="silver">2nd</Label>
+                                        <Label color="teal">2nd</Label>
                                         UsernameHere
                                     </Menu.Item>
                                     <Menu.Item
@@ -213,7 +210,7 @@ export default class HomePage extends Component {
                                         active={activeItem === 'userThird'}
                                         onClick={this.handleItemClick}
                                     >
-                                        <Label color="bronze">3rd</Label>
+                                        <Label color="olive">3rd</Label>
                                         UsernameHere
                                     </Menu.Item>
                                     <Menu.Item
@@ -221,7 +218,7 @@ export default class HomePage extends Component {
                                         active={activeItem === 'userFourth'}
                                         onClick={this.handleItemClick}
                                     >
-                                        <Label color="leaderboard">4th</Label>
+                                        <Label color="grey">4th</Label>
                                         UsernameHere
                                     </Menu.Item>
                                     <Menu.Item
@@ -229,7 +226,7 @@ export default class HomePage extends Component {
                                         active={activeItem === 'userFifth'}
                                         onClick={this.handleItemClick}
                                     >
-                                        <Label color="leaderboard">5th</Label>
+                                        <Label color="grey">5th</Label>
                                         UsernameHere
                                     </Menu.Item>
                                 </Menu>
@@ -241,3 +238,11 @@ export default class HomePage extends Component {
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        isLoggedIn: state.authentication,
+    };
+};
+
+export default connect(mapStateToProps)(HomePage);

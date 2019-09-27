@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Card, Form, Input, Label, Container, Header, Button, Message } from 'semantic-ui-react';
 
 export default class RegisterPage extends Component {
@@ -35,11 +34,11 @@ export default class RegisterPage extends Component {
         const { registerSuccessful } = this.state;
         return (
             <div>
-                <Container classname="RegisterPage-Container">
+                <Container>
                     <Header textAlign="center" size="huge">
                         Register
                     </Header>
-                    <Card centered={true} classname="RegisterPage-Card">
+                    <Card centered={true}>
                         <Form>
                             <Form.Field>
                                 <Input
