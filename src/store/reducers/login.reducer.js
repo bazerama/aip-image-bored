@@ -1,7 +1,6 @@
 export const LOGIN_REQUEST = 'login-request';
 export const LOGIN_SUCCESS = 'login-success';
 export const LOGIN_FAILURE = 'login-failure';
-export const LOGIN_FAILURE_MESSAGE = "It appears you've entered an incorrect email or password";
 export const HIDE_MESSAGE = 'hide-message';
 
 let user = JSON.parse(localStorage.getItem('user'));
@@ -24,7 +23,7 @@ function login(state = initialState, action) {
             return {
                 loggingIn: false,
                 loginError: true,
-                loginErrorMessage: LOGIN_FAILURE_MESSAGE,
+                loginErrorMessage: action.error,
             };
         case HIDE_MESSAGE:
             return {

@@ -1,21 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import { Card, Form, Input, Label, Container, Header, Button, Message } from 'semantic-ui-react';
+import { registerAction } from '../actions/user.actions';
 
-export default class RegisterPage extends Component {
+class RegisterPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            registerError: false,
-            registerSuccessful: false,
             username: '',
             password: '',
             email: '',
-            dob: '',
+            submitted: false,
         };
     }
+
+    // TODO: add better validation
     validateForm() {
         return this.state.username.length > 0 && this.state.password.length > 0 && this.state.email.length > 0;
     }
+
     handleError = () => {
         this.setState({ registerError: true });
         setTimeout(() => {
@@ -24,14 +27,22 @@ export default class RegisterPage extends Component {
     };
 
     handleChange = event => {
-        this.setState({
-            [event.target.id]: event.target.value,
-        });
+        const { id, value } = event.target;
+        this.setState({ [id]: value });
+    };
+
+    handleSubmit = event => {
+        event.preventDefault();
+        const { username, password, email } = this.state;
+        const { dispatch } = this.props;
+        if (username && password && email) {
+            this.setState({ submitted: true });
+            dispatch(registerAction(username, password, email));
+        }
     };
 
     render() {
-        const { registerError } = this.state;
-        const { registerSuccessful } = this.state;
+        const { registering, registerSuccessful, registerError, registerErrorMessage } = this.props;
         return (
             <div>
                 <Container>
@@ -47,43 +58,57 @@ export default class RegisterPage extends Component {
                                     onChange={this.handleChange}
                                     type="username"
                                     value={this.state.username}
+                                    size="large"
                                 />
-                                <Label pointing prompt={!this.validateForm()}>
-                                    Please enter a username
-                                </Label>
+                                {!this.validateForm() ? (
+                                    <Label pointing prompt={true} size="large">
+                                        Please enter a username
+                                    </Label>
+                                ) : null}
                                 <Input
                                     id="password"
                                     placeholder="Password"
                                     onChange={this.handleChange}
                                     type="password"
                                     value={this.state.password}
+                                    size="large"
                                 />
-                                <Label pointing prompt={!this.validateForm()}>
-                                    Please enter a password
-                                </Label>
+                                {!this.validateForm() ? (
+                                    <Label pointing prompt={true} size="large">
+                                        Please enter a password
+                                    </Label>
+                                ) : null}
                                 <Input
                                     id="email"
                                     placeholder="Email"
                                     onChange={this.handleChange}
                                     type="email"
                                     value={this.state.email}
+                                    size="large"
                                 />
-                                <Label pointing prompt={!this.validateForm()}>
-                                    Please enter an email address
-                                </Label>
+                                {!this.validateForm() ? (
+                                    <Label pointing prompt={true} size="large">
+                                        Please enter an email address
+                                    </Label>
+                                ) : null}
                             </Form.Field>
                         </Form>
-                        <Button disabled={!this.validateForm()} onClick={this.handleSubmit} secondary>
+                        <Button
+                            loading={registering}
+                            disabled={!this.validateForm()}
+                            onClick={this.handleSubmit}
+                            secondary
+                        >
                             Submit
                         </Button>
                         {registerError ? (
                             <Message negative>
-                                <Message.Header>Error registering...</Message.Header>
-                                <p>Please try again</p>
+                                <Message.Header>User could not be registered...</Message.Header>
+                                <p>{registerErrorMessage.toString()}</p>
                             </Message>
                         ) : null}
                         {registerSuccessful ? (
-                            <Message>
+                            <Message positive>
                                 <Message.Header>User successfully registered!</Message.Header>
                                 <p>You will now be redirected to the front page</p>
                             </Message>
@@ -94,3 +119,14 @@ export default class RegisterPage extends Component {
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        registering: state.register.registering,
+        registerSuccessful: state.register.registerSuccessful,
+        registerError: state.register.registerError,
+        registerErrorMessage: state.register.registerErrorMessage,
+    };
+};
+
+export default connect(mapStateToProps)(RegisterPage);

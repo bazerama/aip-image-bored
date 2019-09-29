@@ -14,6 +14,7 @@ function authentication(state = initialState, action) {
         case AUTHENTICATION_FAILURE:
             return {
                 isLoggedIn: false,
+                authenticationErrorMessage: action.error,
             };
         case LOGOUT:
             return {

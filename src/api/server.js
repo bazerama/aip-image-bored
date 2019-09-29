@@ -3,7 +3,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 var cors = require('cors');
 var jwt = require('jsonwebtoken');
-require('dotenv').config({ path: '/home/svaughan/uni/spr2019/aip/TerribleOceanMissiles/src/.env' });
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
+// dotenv plugin fetches config - need to make this path relative though...
+console.log(__dirname + '/../../.env');
+require('dotenv').config({ path: __dirname + '/../../.env' });
 
 const API_PORT = 5000;
 const app = express();
@@ -12,6 +17,21 @@ const router = express.Router();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// MongoDB database
+const CONNECTION_URL =
+    'mongodb+srv://admin:7s53Z6xx81lbIVsc@terribleoceanmissiles-qpjhz.mongodb.net/test?retryWrites=true&w=majority';
+const DATABASE_NAME = 'users-db';
+const USERS_COLLECTION = 'users';
+
+var database, collection;
+
+const LOGIN_ERROR_MESSAGE = 'User could not be logged in, please try again';
+const LOGIN_USERNAME_ERROR_MESSAGE = "It appears you've entered an incorrect username";
+const LOGIN_PASSWORD_ERROR_MESSAGE = "It appears you've entered an incorrect password";
+const REGISTER_ERROR_MESSAGE = 'Registration could not be completed, please try again';
+const REGISTER_USERNAME_ERROR_MESSAGE = 'Username already exists, please try again';
+const AUTHENTICATION_ERROR_MESSAGE = 'User could not be authenticated';
 
 // takes the secret from process.env.JWT_SECRET
 function generateToken(user) {
@@ -23,72 +43,92 @@ function generateToken(user) {
     }));
 }
 
-// MongoDB database
-const CONNECTION_URL =
-    'mongodb+srv://admin:7s53Z6xx81lbIVsc@terribleoceanmissiles-qpjhz.mongodb.net/test?retryWrites=true&w=majority';
-const DATABASE_NAME = 'users-db';
-const COLLECTION_NAME = 'users';
-
-var database, collection;
-
 router.options('/authenticate', cors());
 router.post('/authenticate', (req, res) => {
     const user = JSON.parse(req.body.user);
     if (null != user.token) {
-        console.log('token: ' + user.token);
         jwt.verify(user.token, process.env.JWT_SECRET, function(err, decoded) {
+            if (err) {
+                return res.json({
+                    success: false,
+                    status: 401,
+                    error: AUTHENTICATION_ERROR_MESSAGE,
+                });
+            }
             if (null != decoded) {
-                return res.json({ success: true, user: decoded._id });
+                return res.json({
+                    success: true,
+                    user: decoded._id,
+                });
             }
         });
+    } else {
+        return res.json({
+            success: false,
+            status: 401,
+            error: AUTHENTICATION_ERROR_MESSAGE,
+        });
     }
-    return res.status(403).json({
-        success: false,
-        error: 'user could not be authenticated',
-    });
 });
 
 router.options('/login', cors());
 router.post('/login', (req, res) => {
     collection.find({ username: req.body.username }).toArray((err, user) => {
-        if (err) return res.json({ success: false, error: err });
+        if (err) return res.json({ success: false, error: LOGIN_ERROR_MESSAGE });
         if (null != user[0]) {
-            //bcrypt.compare(req.body.password, data[0].password, (err, valid) => {
-            if (req.body.password == user[0].password) {
-                // if (valid) {
+            if (bcrypt.compareSync(req.body.password, user[0].password)) {
                 var token = generateToken(user[0]._id);
-                return res.json({ success: true, user: user[0]._id, token: token });
+                return res.json({
+                    success: true,
+                    user: user[0]._id,
+                    token: token,
+                });
             } else {
-                return res.status(404).json({
+                return res.json({
                     success: false,
-                    error: 'Username or password is wrong',
+                    status: 401,
+                    error: LOGIN_PASSWORD_ERROR_MESSAGE,
                 });
             }
+        } else {
+            return res.json({
+                success: false,
+                status: 401,
+                error: LOGIN_USERNAME_ERROR_MESSAGE,
+            });
         }
-        return res.json({ success: false, error: 'no results' });
     });
 });
 
+router.options('/register', cors());
 router.post('/register', (req, res) => {
-    var hash = bcrypt.hashSync(req.body.password.trim(), 10);
+    var hash = bcrypt.hashSync(req.body.password, saltRounds);
 
-    var user = new User({
+    var user = {
         username: req.body.username,
-        email: req.body.email,
         password: hash,
+        email: req.body.email,
         isEmailVerified: false,
-    });
+    };
 
     collection.find({ username: user.username }, (err, data) => {
-        if (err) return res.json({ success: false, error: err });
+        if (err) return res.json({ success: false, error: REGISTER_ERROR_MESSAGE });
         if (null == data._id) {
-            collection.insertOne(user, (err, res) => {
-                if (err) return res.json({ success: false, error: err });
-                var token = generateToken(user);
-                return res.json({ success: true, token: token, user: res });
+            collection.insertOne(user, (err, result) => {
+                if (err) return res.json({ success: false, error: REGISTER_ERROR_MESSAGE });
+                var token = generateToken(result.insertedId);
+                return res.json({
+                    success: true,
+                    token: token,
+                    userid: result.insertedId,
+                });
+            });
+        } else {
+            return res.json({
+                success: false,
+                error: REGISTER_USERNAME_ERROR_MESSAGE,
             });
         }
-        return res.json({ success: false, error: 'username already exists' });
     });
 });
 
@@ -102,7 +142,7 @@ app.listen(API_PORT, () => {
             throw error;
         }
         database = client.db(DATABASE_NAME);
-        collection = database.collection(COLLECTION_NAME);
-        console.log('Connected to `' + DATABASE_NAME + '`!');
+        collection = database.collection(USERS_COLLECTION);
+        console.log(`Connected to '${DATABASE_NAME}'! Using '${USERS_COLLECTION}' collection.`);
     });
 });

@@ -1,10 +1,9 @@
 import { history } from '../services/history.service';
-import authenticate from '../services/authentication.service';
-import login from '../services/login.service';
+import { checkCredentials, login, register } from '../services/authentication.service';
 
-export function authenticateAction() {
+export function checkCredentialsAction() {
     return dispatch => {
-        authenticate().then(
+        checkCredentials().then(
             user => {
                 dispatch({ type: 'authentication-success', authUser: user });
             },
@@ -28,6 +27,27 @@ export function loginAction(username, password) {
             },
             error => {
                 dispatch({ type: 'login-failure', error: error });
+                setTimeout(() => {
+                    dispatch({ type: 'hide-message' });
+                }, 4000);
+            }
+        );
+    };
+}
+
+export function registerAction(username, password, email) {
+    return dispatch => {
+        dispatch({ type: 'register-request', user: { username } });
+        register(username, password, email).then(
+            user => {
+                dispatch({ type: 'register-success', user: user });
+                setTimeout(() => {
+                    history.push('/');
+                    window.location.reload(true);
+                }, 3000);
+            },
+            error => {
+                dispatch({ type: 'register-failure', error: error });
                 setTimeout(() => {
                     dispatch({ type: 'hide-message' });
                 }, 4000);

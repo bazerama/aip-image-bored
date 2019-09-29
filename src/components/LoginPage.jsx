@@ -42,10 +42,7 @@ class LoginPage extends React.Component {
     }*/
 
     render() {
-        const { loggingIn } = this.props.loggingIn;
-        const { loginError } = this.props.loginError;
-        const { loginErrorMessage } = this.props.loginErrorMessage;
-        const { loginSuccessful } = this.props.loginSuccessful;
+        const { loggingIn, loginError, loginErrorMessage, loginSuccessful } = this.props;
         return (
             <div>
                 <Container>
@@ -59,7 +56,7 @@ class LoginPage extends React.Component {
                                     id="username"
                                     placeholder="Username"
                                     onChange={this.handleChange}
-                                    type="username"
+                                    type="text"
                                     value={this.state.username}
                                     size="large"
                                 />
@@ -113,10 +110,10 @@ class LoginPage extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        loggingIn: state.login,
-        loginSuccessful: state.login,
-        loginError: state.login,
-        loginErrorMessage: state.login,
+        loggingIn: state.login.loggingIn,
+        loginSuccessful: state.login.loginSuccessful,
+        loginError: state.login.loginError,
+        loginErrorMessage: state.login.loginErrorMessage,
     };
 };
 
