@@ -14,7 +14,7 @@ import * as reaction5 from '../resources/nick_young_confused.jpg';
 import * as reaction6 from '../resources/peter_parker_cry.jpg';
 import { Container, Header, Menu, Label, Grid, Card, Image, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { logoutAction, checkCredentialsAction } from '../actions/user.actions';
+import { logoutAction, authenticateAction } from '../actions/user.actions';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -26,7 +26,7 @@ class HomePage extends React.Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(checkCredentialsAction());
+        dispatch(authenticateAction());
     }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name });

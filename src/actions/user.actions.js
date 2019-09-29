@@ -1,9 +1,9 @@
 import { history } from '../services/history.service';
-import { checkCredentials, login, register } from '../services/authentication.service';
+import { authenticate, login, register } from '../services/user.service';
 
-export function checkCredentialsAction() {
+export function authenticateAction() {
     return dispatch => {
-        checkCredentials().then(
+        authenticate().then(
             user => {
                 dispatch({ type: 'authentication-success', authUser: user });
             },
