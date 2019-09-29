@@ -1,11 +1,10 @@
-
 /*
-**  The following code utilises the async/await pattern with fetch()
-**  This is influenced by this tutorial:
-**  https://dev.to/johnpaulada/synchronous-fetch-with-asyncawait
-**  John Paul Ada's code has allowed me to asynchronously fetch data from
-**  my API and get the text(), then process the response.
-*/
+ **  The following code utilises the async/await pattern with fetch()
+ **  This is influenced by this tutorial:
+ **  https://dev.to/johnpaulada/synchronous-fetch-with-asyncawait
+ **  John Paul Ada's code has allowed me to asynchronously fetch data from
+ **  my API and get the text(), then process the response.
+ */
 
 export async function authenticate() {
     const currentUser = localStorage.getItem('user');

@@ -2,12 +2,12 @@ import { history } from '../services/history.service';
 import { authenticate, login, register } from '../services/user.service';
 
 /*
-**  Some of the following code utilises the snippet:
-**      return dispatch => { ... }
-**  This is taken from https://github.com/reduxjs/redux-thunk and allows
-**  for action creators to return a function instead of an action.
-**  This also allows for us to call async functions, like checkCredentials()
-*/
+ **  Some of the following code utilises the snippet:
+ **      return dispatch => { ... }
+ **  This is taken from https://github.com/reduxjs/redux-thunk and allows
+ **  for action creators to return a function instead of an action.
+ **  This also allows for us to call async functions, like checkCredentials()
+ */
 
 export function authenticateAction() {
     return dispatch => {

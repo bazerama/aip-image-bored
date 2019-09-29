@@ -1,11 +1,10 @@
-
 /*
-**  This whole express API was written by me and co-written by me and
-**  my teammate, Jayden Pollard during the Software Development Studio
-**  in Autumn 2019. Although the repository is private, I have received
-**  his permission to use this code, and it is a collaborative work which
-**  we both own licence to under the Copyright Act 1968 - Sect 204.
-*/
+ **  This whole express API was written by me and co-written by me and
+ **  my teammate, Jayden Pollard during the Software Development Studio
+ **  in Autumn 2019. Although the repository is private, I have received
+ **  his permission to use this code, and it is a collaborative work which
+ **  we both own licence to under the Copyright Act 1968 - Sect 204.
+ */
 
 const MongoClient = require('mongodb').MongoClient;
 const express = require('express');
