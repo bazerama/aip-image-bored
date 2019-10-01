@@ -62,3 +62,11 @@ possibly this: https://docs.microsoft.com/en-us/azure/devops/repos/git/git-branc
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Password Validation 
+https://upmostly.com/tutorials/build-a-password-strength-meter-react
+  0 # too guessable: risky password. (guesses < 10^3)
+  1 # very guessable: protection from throttled online attacks. (guesses < 10^6)
+  2 # somewhat guessable: protection from unthrottled online attacks. (guesses < 10^8)
+  3 # safely unguessable: moderate protection from offline slow-hash scenario. (guesses < 10^10)
+  4 # very unguessable: strong protection from offline slow-hash scenario. (guesses >= 10^10)
