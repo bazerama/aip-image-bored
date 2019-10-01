@@ -1,5 +1,7 @@
 import { history } from '../services/history.service';
 import { authenticate, login, register } from '../services/user.service';
+import React from 'react';
+
 
 /*
  **  Some of the following code utilises the snippet:
@@ -21,6 +23,22 @@ export function authenticateAction() {
         );
     };
 }
+
+
+//The following Errors code is is by learnetto
+//See //https://github.com/learnetto/react-form-validation-demo/blob/master/src/Form.js
+export const FormErrors = ({formErrors}) =>
+  <div className='formErrors'>
+    {Object.keys(formErrors).map((fieldName, i) => {
+      if(formErrors[fieldName].length > 0){
+        return (
+          <p key={i}>{fieldName} {formErrors[fieldName]}</p>
+        )        
+      } else {
+        return '';
+      }
+    })}
+  </div>
 
 export function loginAction(username, password) {
     return dispatch => {
