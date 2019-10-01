@@ -16,7 +16,7 @@ class RegisterPage extends React.Component {
             emailValid: 'start',
             passwordValid: false,
             passwordError: '',
-            formValid: false
+            formValid: false,
         };
     }
 
@@ -47,8 +47,9 @@ class RegisterPage extends React.Component {
     handleChange = event => {
         const name = event.target.name;
         const value = event.target.value;
-        this.setState({ [name]: value },
-            () => { this.validateField(name, value) });
+        this.setState({ [name]: value }, () => {
+            this.validateField(name, value);
+        });
     };
 
     validateField(fieldName, value) {
@@ -87,13 +88,15 @@ class RegisterPage extends React.Component {
                 break;
             default:
                 break;
-
         }
-        this.setState({
-            emailValid: emailValid,
-            passwordValid: passwordValid,
-            passwordError: passwordPrint
-        }, this.validateForm);
+        this.setState(
+            {
+                emailValid: emailValid,
+                passwordValid: passwordValid,
+                passwordError: passwordPrint,
+            },
+            this.validateForm
+        );
     }
 
     render() {
@@ -104,7 +107,7 @@ class RegisterPage extends React.Component {
                     <Container>
                         <Header textAlign="center" size="huge">
                             Register
-                    </Header>
+                        </Header>
                         <Card centered={true}>
                             <Form>
                                 <Form.Field>
@@ -131,10 +134,7 @@ class RegisterPage extends React.Component {
                                     />
                                     {!this.state.passwordValid ? (
                                         <Label pointing prompt={true} size="large">
-                                            {!!this.state.passwordError ? (
-                                                'Password is '
-                                            ) : ('Please Enter a Password'
-                                                )}
+                                            {!!this.state.passwordError ? 'Password is ' : 'Please Enter a Password'}
                                             {this.state.passwordError}
                                         </Label>
                                     ) : null}
@@ -149,13 +149,13 @@ class RegisterPage extends React.Component {
                                     />
                                     {this.state.emailValid === 'start' ? (
                                         <Label pointing prompt={true} size="large">
-                                        Please Enter a Email
+                                            Please Enter a Email
                                         </Label>
-                                    ): !!this.state.emailValid === false ? (
+                                    ) : !!this.state.emailValid === false ? (
                                         <Label pointing prompt={true} size="large">
-                                        Invalid Email
+                                            Invalid Email
                                         </Label>
-                                    ):null}
+                                    ) : null}
                                 </Form.Field>
                             </Form>
                             <Button
@@ -165,7 +165,7 @@ class RegisterPage extends React.Component {
                                 secondary
                             >
                                 Sign up!
-                        </Button>
+                            </Button>
                             {registerError ? (
                                 <Message negative>
                                     <Message.Header>User could not be registered...</Message.Header>
