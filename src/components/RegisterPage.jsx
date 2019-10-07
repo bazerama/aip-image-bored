@@ -102,7 +102,6 @@ class RegisterPage extends React.Component {
             passwordError: passwordPrint,
             usernameValid: usernameValid
         }, this.validateForm);
-        );
     }
 
     render() {
