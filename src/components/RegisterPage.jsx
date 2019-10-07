@@ -18,6 +18,7 @@ class RegisterPage extends React.Component {
             passwordError: '',
             formValid: false,
             usernameValid: 'start'
+
         };
     }
 
