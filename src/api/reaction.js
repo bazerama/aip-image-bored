@@ -8,10 +8,10 @@ const ReactionSchema = new mongoose.Schema(
         name: String,
 
         /* The path to the icon for the reaction */
-        path: String
+        path: String,
     },
     {
-        timestamps: true
+        timestamps: true,
     }
 );
 

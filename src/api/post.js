@@ -16,16 +16,18 @@ const PostSchema = new mongoose.Schema(
         /* The user who created this post */
         user: {
             type: mongoose.Schema.Types.ObjectID,
-            ref: 'User'
+            ref: 'User',
         },
 
-        reactions: [{
-            type: mongoose.Schema.Types.ObjectID,
-            ref: 'Reaction'
-        }]
+        reactions: [
+            {
+                type: mongoose.Schema.Types.ObjectID,
+                ref: 'Reaction',
+            },
+        ],
     },
     {
-        timestamps: true
+        timestamps: true,
     }
 );
 
