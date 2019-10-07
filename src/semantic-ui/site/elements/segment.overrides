@@ -1,3 +1,14 @@
 /*******************************
          Site Overrides
 *******************************/
+
+.ui.placeholder.segment {
+
+}
+
+.ui.placeholder.segment .field,
+.ui.placeholder.segment textarea,
+.ui.placeholder.segment >.ui.input,
+.ui.placeholder.segment .button {
+    margin-top: 2rem !important;
+}

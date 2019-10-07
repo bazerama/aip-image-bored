@@ -1,7 +1,7 @@
 export const REGISTER_REQUEST = 'register-request';
 export const REGISTER_SUCCESS = 'register-success';
 export const REGISTER_FAILURE = 'register-failure';
-export const HIDE_MESSAGE = 'hide-message';
+export const HIDE_MESSAGE = 'hide-register-message';
 
 let user = JSON.parse(localStorage.getItem('user'));
 const initialState = user ? { registerSuccessful: true, user } : {};

@@ -1,6 +1,6 @@
 import { history } from '../services/history.service';
 import { authenticate, login, register } from '../services/user.service';
-import React from 'react';
+import { react } from '../services/forumpost.service';
 
 /*
  **  Some of the following code utilises the snippet:
@@ -23,24 +23,6 @@ export function authenticateAction() {
     };
 }
 
-//The following Errors code is is by learnetto
-//See //https://github.com/learnetto/react-form-validation-demo/blob/master/src/Form.js
-export const FormErrors = ({ formErrors }) => (
-    <div className="formErrors">
-        {Object.keys(formErrors).map((fieldName, i) => {
-            if (formErrors[fieldName].length > 0) {
-                return (
-                    <p key={i}>
-                        {fieldName} {formErrors[fieldName]}
-                    </p>
-                );
-            } else {
-                return '';
-            }
-        })}
-    </div>
-);
-
 export function loginAction(username, password) {
     return dispatch => {
         dispatch({ type: 'login-request', user: { username } });
@@ -50,12 +32,12 @@ export function loginAction(username, password) {
                 setTimeout(() => {
                     history.push('/');
                     window.location.reload(true);
-                }, 3000);
+                }, 1500);
             },
             error => {
                 dispatch({ type: 'login-failure', error: error });
                 setTimeout(() => {
-                    dispatch({ type: 'hide-message' });
+                    dispatch({ type: 'hide-login-message' });
                 }, 4000);
             }
         );
@@ -76,7 +58,7 @@ export function registerAction(username, password, email) {
             error => {
                 dispatch({ type: 'register-failure', error: error });
                 setTimeout(() => {
-                    dispatch({ type: 'hide-message' });
+                    dispatch({ type: 'hide-register-message' });
                 }, 4000);
             }
         );
@@ -86,7 +68,27 @@ export function registerAction(username, password, email) {
 export function logoutAction() {
     return dispatch => {
         dispatch({ type: 'logout' });
-        dispatch({ type: 'hide-message' });
+        dispatch({ type: 'hide-login-message' });
+        dispatch({ type: 'hide-register-message' });
         localStorage.removeItem('user');
+    };
+}
+
+export function reactAction(reactionId, postId) {
+    return dispatch => {
+        dispatch({ type: 'react' });
+        react(reactionId, postId).then(
+            reaction => {
+                /*setTimeout(() => {
+                    // success here
+                }, 1000);*/
+            },
+            error => {
+                dispatch({ type: 'react-error', error: error });
+                setTimeout(() => {
+                    dispatch({ type: 'hide-reaction-error' });
+                }, 4000);
+            }
+        );
     };
 }

@@ -1,6 +1,11 @@
 /*******************************
          Site Overrides
 *******************************/
+
+.ui.vertical.menu {
+    width: 100%;
+}
+
 .ui.inverted.menu .spacer.item {
     padding: 0;
 }

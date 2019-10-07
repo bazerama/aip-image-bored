@@ -2,15 +2,42 @@
          Site Overrides
 *******************************/
 
-.ui.black.label > img {
-    width: auto !important;
-    height: 2.0666em !important;
-    transition: height 0.13s;
-    transition-timing-function: linear;
+/********************
+Text selection/highlighting disabled for .ui.unselected and .ui.selected
+Code by user Blowsie: https://stackoverflow.com/a/9314458/12034661
+********************/
+
+.ui.black.label {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -khtml-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
 }
 
-.ui.black.label > img:hover {
-    height: 6.0666em !important;
+.ui.unselected.big.label {
+    background-color: #C0C1C2 !important;
+    border-color: #C0C1C2 !important;
+}
+
+.ui.selected.big.label {
+    background-color: #7289DA !important;
+    border-color: #7289DA !important;
+}
+
+.ui.big.label {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -khtml-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+
+.ui.big.label > img {
+    width: auto !important;
+    height: 2.0666em !important;
 }
 
 .ui.pointing.label {
@@ -20,30 +47,30 @@
     margin-bottom: 10px;
 }
 
-.ui.grey.label {
+.ui.leaderboard.label {
     background-color: #FFFFFF !important;
     border-color: #FFFFFF !important;
     color: #000000 !important;
-    width: 25%;
+    width: 20%;
 }
 
-.ui.brown.label {
+.ui.gold.label {
     background-color: @gold !important;
     border-color: @gold !important;
     color: #000000 !important;
-    width: 25%;
+    width: 20%;
 }
 
-.ui.teal.label {
+.ui.silver.label {
     background-color: @silver !important;
     border-color: @silver !important;
     color: #000000 !important;
-    width: 25%;
+    width: 20%;
 }
 
-.ui.olive.label {
+.ui.bronze.label {
     background-color: @bronze !important;
     border-color: @bronze !important;
     color: #000000 !important;
-    width: 25%;
+    width: 20%;
 }

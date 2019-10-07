@@ -33,14 +33,6 @@ class LoginPage extends React.Component {
         }
     };
 
-    /*handleError = () => {
-        this.setState({ loginErrorMessage: "It appears you've entered an incorrect email or password" })
-        this.setState({ loginError: true })
-        setTimeout(() => {
-            this.setState({ loginError: false })
-        }, 4000)
-    }*/
-
     render() {
         const { loggingIn, loginError, loginErrorMessage, loginSuccessful } = this.props;
         return (
