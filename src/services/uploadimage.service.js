@@ -17,7 +17,6 @@ export async function uploadImage(file, user) {
 
     const response = await fetch('http://localhost:5000/api/uploadImage', request);
     const image = await handleResponse(response);
-    console.log('image', image);
 
     if (!response.success) {
         return Promise.reject(response.error);

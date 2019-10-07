@@ -27,7 +27,6 @@ const UploadModal = props => {
     function handleUploadClick() {
         if (file.imageSelected && file.image != null) {
             const { dispatch } = props;
-            console.log(file.image);
             dispatch(uploadImageAction(file.image, getLoggedInUser()));
         }
     }

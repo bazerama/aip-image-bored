@@ -12,7 +12,6 @@ const CommentsModal = props => {
     const [commentIsHidden, setCommentIsHidden] = useState(false);
 
     function handleCommentClick(event) {
-        console.log(event);
         if (commentIsHidden) {
             setCommentIsHidden(false);
         } else {

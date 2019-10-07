@@ -91,7 +91,6 @@ class RegisterPage extends React.Component {
             case 'username':
                 var pattern = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{6,15})$/;
                 usernameValid = pattern.test(value);
-                console.log(usernameValid);
                 break;
             default:
                 break;

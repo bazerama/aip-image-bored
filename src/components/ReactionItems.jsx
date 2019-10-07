@@ -20,7 +20,6 @@ const ReactionItems = props => {
     });
 
     function handleReactionClick(event) {
-        console.log(event.currentTarget.id);
         const { id } = event.currentTarget;
         if (props.isLoggedIn) {
             if (reactions[id] === 'selected') {
