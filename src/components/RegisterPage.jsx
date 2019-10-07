@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Card, Form, Input, Label, Container, Header, Button, Message } from 'semantic-ui-react';
+import { Card, Form, Input, Label, Container, Header, Button, Message, List } from 'semantic-ui-react';
 import { registerAction } from '../actions/user.actions';
 import * as EmailValidator from 'email-validator';
 import zxcvbn from 'zxcvbn';
@@ -17,6 +17,7 @@ class RegisterPage extends React.Component {
             passwordValid: false,
             passwordError: '',
             formValid: false,
+            usernameValid: 'start'
         };
     }
 
@@ -41,7 +42,7 @@ class RegisterPage extends React.Component {
     //Have been altered to accomodate further validation
     //See //https://github.com/learnetto/react-form-validation-demo/blob/master/src/Form.js
     validateForm() {
-        this.setState({ formValid: this.state.emailValid && this.state.passwordValid });
+        this.setState({ formValid: this.state.usernameValid && this.state.emailValid && this.state.passwordValid });
     }
 
     handleChange = event => {
@@ -55,6 +56,7 @@ class RegisterPage extends React.Component {
     validateField(fieldName, value) {
         let emailValid = this.state.emailValid;
         let passwordValid = this.state.passwordValid;
+        let usernameValid = this.state.usernameValid;
         let passwordStrength = null;
         let passwordPrint = null;
 
@@ -86,16 +88,20 @@ class RegisterPage extends React.Component {
                         break;
                 }
                 break;
+            case 'username':
+                var pattern = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{6,15})$/;
+                usernameValid = pattern.test(value);
+                console.log(usernameValid);
+                break;
             default:
                 break;
         }
-        this.setState(
-            {
-                emailValid: emailValid,
-                passwordValid: passwordValid,
-                passwordError: passwordPrint,
-            },
-            this.validateForm
+        this.setState({
+            emailValid: emailValid,
+            passwordValid: passwordValid,
+            passwordError: passwordPrint,
+            usernameValid: usernameValid
+        }, this.validateForm);
         );
     }
 
@@ -120,9 +126,18 @@ class RegisterPage extends React.Component {
                                         value={this.state.username}
                                         size="large"
                                     />
-                                    <Label pointing prompt={true} size="large">
-                                        Please enter a username
-                                    </Label>
+                                    {this.state.usernameValid === 'start' ? (
+                                        <Label pointing prompt={true} size="large">
+                                            Please Enter a Username
+                                        </Label>
+                                    ) : !!this.state.usernameValid === false ? (
+                                        <Label pointing prompt={true} size="large">
+                                            <List>
+                                            <List.Item>Must be 6-15 Characters Long</List.Item>
+                                            <List.Item>Must include at least 1 number and 1 letter</List.Item>
+                                            </List>
+                                        </Label>
+                                    ) : null}
                                     <Input
                                         id="password"
                                         placeholder="Password"
