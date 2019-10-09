@@ -4,6 +4,7 @@
 .env
 private_key.pem
 public_key.pem
+.idea/*
 
 # dependencies
 /node_modules
