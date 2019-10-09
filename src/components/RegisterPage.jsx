@@ -4,6 +4,7 @@ import { Card, Form, Input, Label, Container, Header, Button, Message, List } fr
 import { registerAction } from '../actions/user.actions';
 import * as EmailValidator from 'email-validator';
 import zxcvbn from 'zxcvbn';
+import MenuBar from './MenuBar';
 
 class RegisterPage extends React.Component {
     constructor(props) {
@@ -66,7 +67,7 @@ class RegisterPage extends React.Component {
                 break;
             case 'password':
                 passwordStrength = zxcvbn(value).score;
-                passwordValid = zxcvbn(value).score >= 3;
+                passwordValid = zxcvbn(value).score >= 2;
                 switch (passwordStrength) {
                     case 0:
                         passwordPrint = 'Too Weak';
@@ -108,9 +109,11 @@ class RegisterPage extends React.Component {
 
     render() {
         const { registering, registerSuccessful, registerError, registerErrorMessage } = this.props;
+        const { isLoggedIn } = this.props;
         return (
             <div>
                 <div>
+                <MenuBar openUploadModal={this.openUploadModal} isLoggedIn={isLoggedIn} />
                     <Container>
                         <Header textAlign="center" size="huge">
                             Register
@@ -134,8 +137,7 @@ class RegisterPage extends React.Component {
                                     ) : !!this.state.usernameValid === false ? (
                                         <Label pointing prompt={true} size="large">
                                             <List>
-                                                <List.Item>Must be 6-15 Characters Long</List.Item>
-                                                <List.Item>Must include at least 1 number and 1 letter</List.Item>
+                                                <List.Item>Must be 6-15 Characters Long and Include 1 Number and 1 Letter</List.Item>
                                             </List>
                                         </Label>
                                     ) : null}
@@ -208,6 +210,7 @@ const mapStateToProps = state => {
         registerSuccessful: state.register.registerSuccessful,
         registerError: state.register.registerError,
         registerErrorMessage: state.register.registerErrorMessage,
+        isLoggedIn: state.authentication.isLoggedIn,
     };
 };
 
