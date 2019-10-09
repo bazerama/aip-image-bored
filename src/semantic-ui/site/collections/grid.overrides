@@ -5,4 +5,5 @@
 .ui.grid {
     background-color: #FFFFFF !important;
     margin: 0;
+    max-height: 100%;
 }

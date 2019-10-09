@@ -69,7 +69,7 @@ export async function register(username, password, email) {
     return Promise.resolve(user);
 }
 
-async function handleResponse(response) {
+export async function handleResponse(response) {
     const text = await response.text();
     const data = text && JSON.parse(text);
 

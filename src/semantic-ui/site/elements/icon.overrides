@@ -1,3 +1,12 @@
 /*******************************
          Site Overrides
 *******************************/
+
+.ui.icon.header {
+    margin: 2rem !important;
+}
+
+.ui.icon.header .icon {
+    height: auto !important;
+    margin: 0 !important;
+}

@@ -1,7 +1,7 @@
 export const LOGIN_REQUEST = 'login-request';
 export const LOGIN_SUCCESS = 'login-success';
 export const LOGIN_FAILURE = 'login-failure';
-export const HIDE_MESSAGE = 'hide-message';
+export const HIDE_MESSAGE = 'hide-login-message';
 
 let user = JSON.parse(localStorage.getItem('user'));
 const initialState = user ? { loginSuccessful: true, user } : {};

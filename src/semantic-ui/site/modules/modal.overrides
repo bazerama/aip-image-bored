@@ -1,3 +1,7 @@
 /*******************************
          Site Overrides
 *******************************/
+
+.modals.dimmer .ui.scrolling.modal {
+    margin: 1vh auto;
+}

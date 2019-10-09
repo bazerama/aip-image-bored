@@ -65,8 +65,12 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Password Validation 
 https://upmostly.com/tutorials/build-a-password-strength-meter-react
-  0 # too guessable: risky password. (guesses < 10^3)
-  1 # very guessable: protection from throttled online attacks. (guesses < 10^6)
-  2 # somewhat guessable: protection from unthrottled online attacks. (guesses < 10^8)
-  3 # safely unguessable: moderate protection from offline slow-hash scenario. (guesses < 10^10)
-  4 # very unguessable: strong protection from offline slow-hash scenario. (guesses >= 10^10)
+https://github.com/dropbox/zxcvbn
+zxcvbn is a low budget password strength estimator, the implementation of this package enables higher secuirty, flexibilty and usability. The package takes into account common names and words, as well as keyboard patterns.
+Passwords are reated as followed. Our password strength allowed is ranked as anything equal or higher than 2.  
+- 0 # too guessable: risky password. (guesses < 10^3)
+- 1 # very guessable: protection from throttled online attacks. (guesses < 10^6)
+- 2 # somewhat guessable: protection from unthrottled online attacks. (guesses < 10^8)
+- 3 # safely unguessable: moderate protection from offline slow-hash scenario. (guesses < 10^10)
+- 4 # very unguessable: strong protection from offline slow-hash scenario. (guesses >= 10^10)
+
