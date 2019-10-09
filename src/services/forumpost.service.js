@@ -1,10 +1,43 @@
 import { handleResponse } from './user.service';
 
-export async function react(reactionId, postId) {
+export async function getThreads() {
+    const request = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    };
+
+    const response = await fetch('http://localhost:5000/api/getThreads', request);
+    const threads = await handleResponse(response);
+
+    if (!response.ok) {
+        return Promise.reject(threads.error);
+    }
+
+    return Promise.resolve(threads);
+}
+
+export async function getReplies(replies) {
     const request = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ reactionId: reactionId, postId: postId }),
+        body: JSON.stringify({ replies: replies }),
+    };
+
+    const response = await fetch('http://localhost:5000/api/getReplies', request);
+    const threads = await handleResponse(response);
+
+    if (!response.ok) {
+        return Promise.reject(threads.error);
+    }
+
+    return Promise.resolve(threads);
+}
+
+export async function react(reactionId, postId, mode) {
+    const request = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reactionId: reactionId, postId: postId, mode: mode }),
     };
 
     const response = await fetch('http://localhost:5000/api/react', request);
@@ -13,6 +46,8 @@ export async function react(reactionId, postId) {
     if (!reaction.success) {
         return Promise.reject(reaction.error);
     }
+
+    console.log(reaction);
 
     return Promise.resolve(reaction);
 }

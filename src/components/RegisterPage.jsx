@@ -113,7 +113,7 @@ class RegisterPage extends React.Component {
         return (
             <div>
                 <div>
-                <MenuBar openUploadModal={this.openUploadModal} isLoggedIn={isLoggedIn} />
+                    <MenuBar openUploadModal={this.openUploadModal} isLoggedIn={isLoggedIn} />
                     <Container>
                         <Header textAlign="center" size="huge">
                             Register
@@ -137,7 +137,9 @@ class RegisterPage extends React.Component {
                                     ) : !!this.state.usernameValid === false ? (
                                         <Label pointing prompt={true} size="large">
                                             <List>
-                                                <List.Item>Must be 6-15 Characters Long and Include 1 Number and 1 Letter</List.Item>
+                                                <List.Item>
+                                                    Must be 6-15 Characters Long and Include 1 Number and 1 Letter
+                                                </List.Item>
                                             </List>
                                         </Label>
                                     ) : null}

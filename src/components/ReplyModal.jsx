@@ -1,57 +1,92 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { reactAction } from '../actions/user.actions';
-import * as image1 from '../resources/c1.jpg';
-import { Modal, Grid, Segment, Container, Image, Header, Icon, Button } from 'semantic-ui-react';
+import { Modal, Grid, Segment, Image, Header, Icon, Button } from 'semantic-ui-react';
+import { uploadReplyAction } from '../actions/upload.actions';
+import { getLoggedInUser } from '../services/user.service';
 
 const ReplyModal = props => {
-    const [imageUploaded, setImageUploaded] = useState(false);
-    const [imageUploading, setImageUploading] = useState(false);
+    const [file, setFile] = useState({ image: null, imageSelected: false });
+    // const [imageUploaded, setImageUploaded] = useState(false);
+    // const [imageUploading, setImageUploading] = useState(false);
+    const { success, isUploading } = props;
+
+    useEffect(() => {
+        if (success) {
+            props.closeReplyModal();
+            window.location.reload();
+        }
+    });
+
+    function onChange(event) {
+        const file = event.target.files[0];
+        setFile(prevState => ({
+            ...prevState,
+            image: file,
+            imageSelected: true,
+        }));
+    }
+
+    function handleUploadClick() {
+        if (file.imageSelected && file.image != null) {
+            const { dispatch } = props;
+            dispatch(uploadReplyAction(props.depth, props.replyModalId, file.image, getLoggedInUser()));
+        }
+    }
 
     return (
-        <Modal size="large" open={props.showReplyModal} onClose={props.closeReplyModal} className="modal-reply">
-            <Grid>
-                {imageUploaded ? (
-                    imageUploading ? (
-                        <Segment placeholder>
-                            <Header icon>
-                                <Icon name="image outline" />
-                                Reply with an image
-                                <Button secondary size="huge">
+        <Modal
+            centered
+            size="large"
+            open={props.showReplyModal}
+            onClose={props.closeReplyModal}
+            className="modal-reply"
+        >
+            {!success ? (
+                !isUploading ? (
+                    <Grid celled="internally">
+                        <Grid.Row>
+                            <Grid.Column textAlign="center" width={16}>
+                                <Header as="h1" icon>
+                                    <Icon name="image outline" />
+                                    Reply with an image
+                                </Header>
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row>
+                            <Grid.Column textAlign="center" width={16}>
+                                <input type="file" name="file" onChange={onChange} />
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row>
+                            <Grid.Column textAlign="center" width={16}>
+                                <Button
+                                    secondary
+                                    size="huge"
+                                    loading={isUploading}
+                                    disabled={!file.imageSelected}
+                                    onClick={handleUploadClick}
+                                >
                                     Upload Image
                                 </Button>
-                            </Header>
-                        </Segment>
-                    ) : (
-                        <Segment loading>
-                            <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                        </Segment>
-                    )
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
                 ) : (
-                    <React.Fragment>
-                        <Grid.Row className="modal-upload-image-row">
-                            <Container className="modal-upload-image-container">
-                                <Image className="modal-upload-image-img" src={image1} />
-                            </Container>
-                        </Grid.Row>
-                        <Grid.Row className="modal-upload-buttons-row">
-                            <Segment className="modal-upload-segment">
-                                <Header textAlign="center" className="modal-upload-header">
-                                    Use this image?
-                                </Header>
-                                <Button color="red" size="huge" className="modal-upload-button">
-                                    Cancel
-                                </Button>
-                                <Button color="green" size="huge" className="modal-upload-button">
-                                    Continue
-                                </Button>
-                            </Segment>
-                        </Grid.Row>
-                    </React.Fragment>
-                )}
-            </Grid>
+                    <Segment loading>
+                        <Image fluid src="https://react.semantic-ui.com/images/wireframe/image.png" />
+                    </Segment>
+                )
+            ) : null}
         </Modal>
     );
 };
 
-export default ReplyModal;
+const mapStateToProps = state => {
+    return {
+        success: state.uploadReply.success,
+        isUploading: state.uploadReply.isUploading,
+        reply: state.uploadReply.reply,
+    };
+};
+
+export default connect(mapStateToProps)(ReplyModal);

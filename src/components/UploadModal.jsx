@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Grid, Header, Button } from 'semantic-ui-react';
-import { uploadImageAction } from '../actions/uploadimage.actions';
-import { getLoggedInUser } from '../common/getLoggedInUser';
+import { uploadImageAction } from '../actions/upload.actions';
+import { getLoggedInUser } from '../services/user.service';
 
 /*
  **  Some of this code is a customised version of Mosh's code and tutorial on Image Uploading here:
@@ -10,16 +10,21 @@ import { getLoggedInUser } from '../common/getLoggedInUser';
  */
 
 const UploadModal = props => {
-    const [file, setFile] = useState({
-        image: null,
-        imageSelected: false,
+    const [file, setFile] = useState({ image: null, imageSelected: false });
+    const { isUploading, success } = props;
+
+    useEffect(() => {
+        if (success) {
+            props.closeUploadModal();
+            window.location.reload();
+        }
     });
-    const { isUploading, isLoggedIn } = props;
 
     function onChange(event) {
+        const file = event.target.files[0];
         setFile(prevState => ({
             ...prevState,
-            image: event.target.files[0],
+            image: file,
             imageSelected: true,
         }));
     }
@@ -47,7 +52,7 @@ const UploadModal = props => {
                     </Grid.Row>
                     <Grid.Row>
                         <Grid.Column textAlign="center" width={16}>
-                            <Button disabled={!file.imageSelected} onClick={handleUploadClick}>
+                            <Button loading={isUploading} disabled={!file.imageSelected} onClick={handleUploadClick}>
                                 Upload
                             </Button>
                         </Grid.Column>
@@ -60,7 +65,8 @@ const UploadModal = props => {
 
 const mapStateToProps = state => {
     return {
-        isUploading: state.uploadimage.isUploading,
+        success: state.uploadImage.success,
+        isUploading: state.uploadImage.isUploading,
     };
 };
 

@@ -8,6 +8,7 @@
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "date-fns": "^2.4.1",
     "dotenv": "^8.1.0",
     "email-validator": "^2.0.4",
     "express": "^4.17.1",
@@ -16,6 +17,7 @@
     "install": "^0.13.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
+    "mongodb": "^3.3.2",
     "mongoose": "^5.6.12",
     "multiparty": "^4.2.1",
     "react": "^16.9.0",
@@ -34,6 +36,7 @@
   "scripts": {
     "client": "craco start",
     "server": "node src/api/server.js",
+    "db": "mongod",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "commit": "npx git-cz",
     "build": "craco build",

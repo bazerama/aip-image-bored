@@ -1,3 +1,16 @@
-/*******************************
+/*************************************************************************
          Site Overrides
-*******************************/
+    Figure out how to contain images here, thanks to 'shefali163':
+    https://www.geeksforgeeks.org/resize-image-proportionally-with-css/
+**************************************************************************/
+
+.ui.image {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    will-change: auto !important;
+}
+
+.ui.image.fluid {
+    will-change: auto !important;
+}

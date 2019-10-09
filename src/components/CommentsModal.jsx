@@ -1,95 +1,88 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { reactAction } from '../actions/user.actions';
-import * as image1 from '../resources/c1.jpg';
-import * as image2 from '../resources/c2.jpg';
-import * as image4 from '../resources/c3.jpg';
-import * as image3 from '../resources/c4.jpg';
-import * as image5 from '../resources/c5.jpg';
-import { Modal, Image, Divider, Header, Comment, Label, Icon } from 'semantic-ui-react';
+import { Modal, Image, Divider, Header, Comment, Icon, Card, Segment, Button } from 'semantic-ui-react';
+import { getRepliesAction } from '../actions/forumpost.actions';
+import Reply from './Reply';
 
 const CommentsModal = props => {
-    const [commentIsHidden, setCommentIsHidden] = useState(false);
+    const [thread, setThread] = useState(null);
+    // const replyComponents = [];
 
-    function handleCommentClick(event) {
-        if (commentIsHidden) {
-            setCommentIsHidden(false);
-        } else {
-            setCommentIsHidden(true);
+    useEffect(() => {
+        if (props.showCommentsModal) {
+            const { threads } = props;
+            threads.forEach(function(element) {
+                if (element._id === props.commentsModalId && thread === null) {
+                    setThread(element);
+                    props.getReplies(element.replies);
+                }
+            });
         }
-    }
+    });
 
-    return (
+    return thread && props.success && thread.replies.length > 0 ? (
         <Modal size="large" open={props.showCommentsModal} onClose={props.closeCommentsModal}>
-            <Image src={image1} fluid />
+            <Image src={thread.imageUrl} fluid />
             <Divider horizontal>
                 <Header as="h3">Comments</Header>
             </Divider>
             <Comment.Group threaded size="large">
                 <Comment>
-                    <Comment.Avatar as="a" src="https://react.semantic-ui.com/images/avatar/small/matt.jpg" />
-                    <Comment.Content>
-                        <Comment.Author as="a">bazerama</Comment.Author>
-                        <Comment.Metadata>Today at 5:32pm</Comment.Metadata>
-                        <Comment.Text>
-                            <Image src={image2} fluid />
-                        </Comment.Text>
-                        <Comment.Actions>
-                            <Comment.Action>
-                                {commentIsHidden ? (
-                                    <Label onClick={handleCommentClick} color="black">
-                                        <Icon name="unhide" />
-                                        Show replies
-                                    </Label>
-                                ) : (
-                                    <Label onClick={handleCommentClick} color="black">
-                                        <Icon name="hide" />
-                                        Hide replies
-                                    </Label>
-                                )}
-                            </Comment.Action>
-                            <Comment.Action>
-                                <Label color="black" onClick={props.openReplyModal}>
-                                    <Icon name="reply" />
-                                    Reply
-                                </Label>
-                            </Comment.Action>
-                        </Comment.Actions>
-                    </Comment.Content>
-                    <Comment.Group collapsed={commentIsHidden} size="large">
-                        <Comment.Avatar as="a" src="https://react.semantic-ui.com/images/avatar/small/matt.jpg" />
-                        <Comment.Content>
-                            <Comment.Author as="a">bazerama</Comment.Author>
-                            <Comment.Metadata>Today at 5:32pm</Comment.Metadata>
-                            <Comment.Text>
-                                <Image src={image3} fluid />
-                            </Comment.Text>
-                        </Comment.Content>
-                    </Comment.Group>
-                    <Comment.Group collapsed={commentIsHidden} size="large">
-                        <Comment.Avatar as="a" src="https://react.semantic-ui.com/images/avatar/small/matt.jpg" />
-                        <Comment.Content>
-                            <Comment.Author as="a">bazerama</Comment.Author>
-                            <Comment.Metadata>Today at 5:32pm</Comment.Metadata>
-                            <Comment.Text>
-                                <Image src={image4} fluid />
-                            </Comment.Text>
-                        </Comment.Content>
-                    </Comment.Group>
-                </Comment>
-                <Comment size="large">
-                    <Comment.Avatar as="a" src="https://react.semantic-ui.com/images/avatar/small/matt.jpg" />
-                    <Comment.Content>
-                        <Comment.Author as="a">bazerama</Comment.Author>
-                        <Comment.Metadata>Today at 5:32pm</Comment.Metadata>
-                        <Comment.Text>
-                            <Image src={image5} fluid />
-                        </Comment.Text>
-                    </Comment.Content>
+                    {thread.replies.map(reply => {
+                        return (
+                            <Reply
+                                key={reply.replyId}
+                                reply={reply}
+                                isLoggedIn={props.isLoggedIn}
+                                openReplyModal={props.openReplyModal}
+                            />
+                        );
+                    })}
                 </Comment>
             </Comment.Group>
         </Modal>
-    );
+    ) : thread ? (
+        <Modal size="large" open={props.showCommentsModal} onClose={props.closeCommentsModal}>
+            <Image src={thread.imageUrl} fluid />
+            <Divider horizontal>
+                <Header as="h3">Comments</Header>
+            </Divider>
+            <Card fluid>
+                <Segment placeholder>
+                    <Header icon>
+                        <Icon name="image outline" />
+                        There are no replies! Upload your reply to start a discussion.
+                        <Button
+                            id={thread._id}
+                            depth={thread.depth}
+                            secondary
+                            size="huge"
+                            onClick={props.openReplyModal}
+                        >
+                            Reply
+                        </Button>
+                    </Header>
+                </Segment>
+            </Card>
+        </Modal>
+    ) : null;
 };
 
-export default CommentsModal;
+const mapDispatchToProps = dispatch => {
+    return {
+        getReplies: replies => dispatch(getRepliesAction(replies)),
+    };
+};
+
+const mapStateToProps = state => {
+    return {
+        success: state.getReplies.success,
+        replies: state.getReplies.replies,
+        isLoading: state.getReplies.isLoading,
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CommentsModal);
