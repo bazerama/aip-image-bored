@@ -17,8 +17,7 @@ class RegisterPage extends React.Component {
             passwordValid: false,
             passwordError: '',
             formValid: false,
-            usernameValid: 'start'
-
+            usernameValid: 'start',
         };
     }
 
@@ -97,12 +96,15 @@ class RegisterPage extends React.Component {
             default:
                 break;
         }
-        this.setState({
-            emailValid: emailValid,
-            passwordValid: passwordValid,
-            passwordError: passwordPrint,
-            usernameValid: usernameValid
-        }, this.validateForm);
+        this.setState(
+            {
+                emailValid: emailValid,
+                passwordValid: passwordValid,
+                passwordError: passwordPrint,
+                usernameValid: usernameValid,
+            },
+            this.validateForm
+        );
     }
 
     render() {
@@ -133,8 +135,8 @@ class RegisterPage extends React.Component {
                                     ) : !!this.state.usernameValid === false ? (
                                         <Label pointing prompt={true} size="large">
                                             <List>
-                                            <List.Item>Must be 6-15 Characters Long</List.Item>
-                                            <List.Item>Must include at least 1 number and 1 letter</List.Item>
+                                                <List.Item>Must be 6-15 Characters Long</List.Item>
+                                                <List.Item>Must include at least 1 number and 1 letter</List.Item>
                                             </List>
                                         </Label>
                                     ) : null}

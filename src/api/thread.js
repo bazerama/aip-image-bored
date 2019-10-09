@@ -8,13 +8,15 @@ const mongoose = require('mongoose');
 const ThreadSchema = new mongoose.Schema(
     {
         id: Number,
-        posts: [{
-            type: mongoose.Schema.Types.ObjectID,
-            ref: 'Post'
-        }]
+        posts: [
+            {
+                type: mongoose.Schema.Types.ObjectID,
+                ref: 'Post',
+            },
+        ],
     },
     {
-        timestamps: true
+        timestamps: true,
     }
 );
 
