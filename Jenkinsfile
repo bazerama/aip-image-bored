@@ -6,7 +6,7 @@ node() {
     }
     stage('Refresh React App Directory') {
       sh """
-      cd /var/www
+      sudo cd /var/www
       sudo rm -rf /var/www/mcu-website
       sudo mkdir mcu-website
       sudo chown jenkins mcu-website
@@ -14,16 +14,16 @@ node() {
     }
     stage('Moves files to React App Directory') {
       sh """
-      rm -rf /var/log/mcu-online/mcu-website/output.log
-      cp -r . /var/www/mcu-website
+      sudo rm -rf /var/log/mcu-online/mcu-website/output.log
+      sudo cp -r . /var/www/mcu-website
       """
     }
     stage('Start React App') {
       sh """
-      cd /var/www/mcu-website
-      cp .env.production .env
-      npm ci
-      pm2 start mcuonline.config.js
+      sudo cd /var/www/mcu-website
+      sudo cp .env.production .env
+      sudo npm ci
+      sudo pm2 start mcuonline.config.js
       """
     }
 }
