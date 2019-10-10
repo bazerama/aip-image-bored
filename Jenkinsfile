@@ -6,7 +6,7 @@ node() {
     }
     stage('Refresh React App Directory') {
       sh """
-      sudo cd /var/www
+      cd /var/www
       sudo rm -rf /var/www/mcu-website
       sudo mkdir mcu-website
       sudo chown jenkins mcu-website
@@ -20,10 +20,10 @@ node() {
     }
     stage('Start React App') {
       sh """
-      sudo cd /var/www/mcu-website
+      cd /var/www/mcu-website
       sudo cp .env.production .env
-      sudo npm ci
-      sudo pm2 start mcuonline.config.js
+      npm ci
+      pm2 start mcuonline.config.js
       """
     }
 }
