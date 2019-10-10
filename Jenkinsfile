@@ -22,8 +22,8 @@ node() {
       sh """
       cd /var/www/mcu-website
       sudo cp .env.production .env
-      yarn install
-      pm2 start mcuonline.config.js
+      sudo yarn install
+      sudo pm2 start mcuonline.config.js
       """
     }
 }
