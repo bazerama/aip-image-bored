@@ -6,7 +6,7 @@ export async function getThreads() {
         headers: { 'Content-Type': 'application/json' },
     };
 
-    const response = await fetch('http://localhost:5000/api/getThreads', request);
+    const response = await fetch(process.env.REACT_APP_SEARCH_API_ENV + '/api/getThreads', request);
     const threads = await handleResponse(response);
 
     if (!response.ok) {
@@ -23,7 +23,7 @@ export async function getReplies(replies) {
         body: JSON.stringify({ replies: replies }),
     };
 
-    const response = await fetch('http://localhost:5000/api/getReplies', request);
+    const response = await fetch(process.env.REACT_APP_SEARCH_API_ENV + '/api/getReplies', request);
     const threads = await handleResponse(response);
 
     if (!response.ok) {
@@ -40,7 +40,7 @@ export async function react(reactionId, postId, mode) {
         body: JSON.stringify({ reactionId: reactionId, postId: postId, mode: mode }),
     };
 
-    const response = await fetch('http://localhost:5000/api/react', request);
+    const response = await fetch(process.env.REACT_APP_SEARCH_API_ENV + '/api/react', request);
     const reaction = await handleResponse(response);
 
     if (!reaction.success) {

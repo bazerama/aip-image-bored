@@ -15,7 +15,7 @@ export async function uploadImage(file, user) {
         body: formData,
     };
 
-    const response = await fetch('http://localhost:5000/api/uploadImage', request);
+    const response = await fetch(process.env.REACT_APP_SEARCH_API_ENV + '/api/uploadImage', request);
     const image = await handleResponse(response);
 
     if (!image.success) {
@@ -37,7 +37,7 @@ export async function uploadReply(depth, parentId, file, user) {
         body: formData,
     };
 
-    const response = await fetch('http://localhost:5000/api/uploadReply', request);
+    const response = await fetch(process.env.REACT_APP_SEARCH_API_ENV + '/api/uploadReply', request);
     const reply = await handleResponse(response);
 
     if (!reply.success) {

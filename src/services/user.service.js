@@ -33,7 +33,7 @@ export async function authenticate() {
         body: JSON.stringify({ user: currentUser }),
     };
 
-    const response = await fetch('http://localhost:5000/api/authenticate', request);
+    const response = await fetch(process.env.REACT_APP_SEARCH_API_ENV + '/api/authenticate', request);
     const user = await handleResponse(response);
 
     if (!user.success) {
@@ -53,7 +53,7 @@ export async function login(username, password) {
         body: JSON.stringify({ username: username, password: password }),
     };
 
-    const response = await fetch('http://localhost:5000/api/login', request);
+    const response = await fetch(process.env.REACT_APP_SEARCH_API_ENV + '/api/login', request);
     const user = await handleResponse(response);
 
     if (!user.success) {
@@ -71,7 +71,7 @@ export async function register(username, password, email) {
         body: JSON.stringify({ username: username, password: password, email: email }),
     };
 
-    const response = await fetch('http://localhost:5000/api/register', request);
+    const response = await fetch(process.env.REACT_APP_SEARCH_API_ENV + '/api/register', request);
     const user = await handleResponse(response);
 
     if (!user.success) {
