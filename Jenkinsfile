@@ -22,7 +22,7 @@ node() {
       sh """
       cd /var/www/mcu-website
       sudo cp .env.production .env
-      npm ci
+      yarn install
       pm2 start mcuonline.config.js
       """
     }
