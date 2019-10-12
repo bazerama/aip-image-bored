@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { reactAction } from '../actions/user.actions';
-import * as image1 from '../resources/c1.jpg';
+// import { reactAction } from '../../src/actions/user.actions';
+import * as image1 from '../../resources/c1.jpg';
 import { Modal, Grid, Segment, Container, Image, Header, Icon, Button } from 'semantic-ui-react';
 
 const ReplyModal = props => {

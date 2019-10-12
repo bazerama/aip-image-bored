@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
-import LeaderboardLabel from './leaderboard/LeaderboardLabel';
+import LeaderboardLabel from './LeaderboardLabel';
 
 const Leaderboard = () => {
     return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { loginAction } from '../actions/user.actions';
+import { loginAction } from '../../actions/user.actions';
 import { Card, Form, Input, Label, Container, Header, Button, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 

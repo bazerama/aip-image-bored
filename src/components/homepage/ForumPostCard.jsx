@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ReactionItems from './ReactionItems';
-import * as image1 from '../resources/c1.jpg';
+import ReactionItems from './../responses/ReactionItems';
+import * as image1 from '../../resources/c1.jpg';
 import { Segment, Grid, Card, Image } from 'semantic-ui-react';
 
 const ForumPostCard = props => {

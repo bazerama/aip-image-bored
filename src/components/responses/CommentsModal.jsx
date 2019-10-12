@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { reactAction } from '../actions/user.actions';
-import * as image1 from '../resources/c1.jpg';
-import * as image2 from '../resources/c2.jpg';
-import * as image4 from '../resources/c3.jpg';
-import * as image3 from '../resources/c4.jpg';
-import * as image5 from '../resources/c5.jpg';
+import { reactAction } from '../../actions/user.actions';
+import * as image1 from '../../resources/c1.jpg';
+import * as image2 from '../../resources/c2.jpg';
+import * as image4 from '../../resources/c3.jpg';
+import * as image3 from '../../resources/c4.jpg';
+import * as image5 from '../../resources/c5.jpg';
 import { Modal, Image, Divider, Header, Comment, Label, Icon } from 'semantic-ui-react';
 
 const CommentsModal = props => {

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import * as reaction1 from '../resources/vince_wow.png';
-import * as reaction2 from '../resources/spanish_laugh.png';
-import * as reaction3 from '../resources/pogchamp.png';
-import * as reaction4 from '../resources/tb_lul.png';
-import * as reaction5 from '../resources/nick_young_confused.jpg';
-import * as reaction6 from '../resources/peter_parker_cry.jpg';
-import { reactAction } from '../actions/user.actions';
+import * as reaction1 from '../../resources/vince_wow.png';
+import * as reaction2 from '../../resources/spanish_laugh.png';
+import * as reaction3 from '../../resources/pogchamp.png';
+import * as reaction4 from '../../resources/tb_lul.png';
+import * as reaction5 from '../../resources/nick_young_confused.jpg';
+import * as reaction6 from '../../resources/peter_parker_cry.jpg';
+import { reactAction } from '../../actions/user.actions';
 import { Label, Image } from 'semantic-ui-react';
 
 const ReactionItems = props => {

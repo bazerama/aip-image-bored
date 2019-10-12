@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Card, Form, Input, Label, Container, Header, Button, Message, List } from 'semantic-ui-react';
-import { registerAction } from '../actions/user.actions';
+import { registerAction } from '../../actions/user.actions';
 import * as EmailValidator from 'email-validator';
 import zxcvbn from 'zxcvbn';
-import MenuBar from './MenuBar';
+import MenuBar from '../menu/MenuBar';
 
 class RegisterPage extends React.Component {
     constructor(props) {

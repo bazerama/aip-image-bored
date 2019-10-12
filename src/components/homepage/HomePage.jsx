@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './HomePage.css';
 import { Container, Header, Grid, Card } from 'semantic-ui-react';
-import { authenticateAction } from '../actions/user.actions';
-import CommentsModal from './CommentsModal';
-import ReplyModal from './ReplyModal';
-import UploadModal from './UploadModal';
+import { authenticateAction } from '../../actions/user.actions';
+import CommentsModal from '../responses/CommentsModal';
+import ReplyModal from '../responses/ReplyModal';
+//import UploadModal from '../uploads/UploadModal';
 import ForumPostCard from './ForumPostCard';
-import MenuBar from './MenuBar';
-import Leaderboard from './Leaderboard';
+import MenuBar from '../menu/MenuBar';
+import Leaderboard from '../leaderboard/Leaderboard';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -37,12 +37,12 @@ class HomePage extends React.Component {
         this.setState({ showReplyModal: false });
     };
 
-    openUploadModal = () => {
-        if (this.props.isLoggedIn) this.setState({ showUploadModal: true });
-    };
-    closeUploadModal = () => {
-        this.setState({ showUploadModal: false });
-    };
+    // openUploadModal = () => {
+    //     if (this.props.isLoggedIn) this.setState({ showUploadModal: true });
+    // };
+    // closeUploadModal = () => {
+    //     this.setState({ showUploadModal: false });
+    // };
 
     render() {
         const { showCommentsModal, showReplyModal, showUploadModal } = this.state;
@@ -55,7 +55,7 @@ class HomePage extends React.Component {
                     closeCommentsModal={this.closeCommentsModal}
                 />
                 <ReplyModal showReplyModal={showReplyModal} closeReplyModal={this.closeReplyModal} />
-                <UploadModal showUploadModal={showUploadModal} closeUploadModal={this.closeUploadModal} />
+                {/* <UploadModal showUploadModal={showUploadModal} closeUploadModal={this.closeUploadModal} /> */}
                 <MenuBar openUploadModal={this.openUploadModal} isLoggedIn={isLoggedIn} />
                 <Container>
                     <Grid container celled="internally">
