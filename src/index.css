@@ -18,3 +18,7 @@ a {
 a:hover {
     color: black !important;
 }
+
+img {
+    will-change: auto !important;
+}

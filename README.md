@@ -3,6 +3,20 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This project is [Commitizen friendly](http://commitizen.github.io/cz-cli/)
 
+## StyleCI
+This project has StyleCI enabled. Upon every pushed commit StyleCI will ensure that your code follows all rules set for the repository. If it detects any code that breaks the styling rules, it will create a new branch, make the required changes to correct the styling issues, and then send a pull request. Please review this PR and merge it if you find no issues.
+
+The following are the rules StyleCI will check against:
+- tab-width: 4
+- use-tabs: false
+- print-width: 120
+- double-quotes: false
+- trailing-commas: es5
+- semicolons: true
+- arrow-parens: avoid
+- bracket-spacing: true
+
+
 ## How to use `yarn`
 Simply use `yarn` wherever you would normally use `npm`... (e.g. `yarn add somepackage`)
 A fast, reliable and secure dependency management package, often known as "the better NPM"
@@ -30,28 +44,6 @@ To use Semantic UIs components in this repo, please see their [docs](https://rea
 |`build`|Build the app for prod in the `build` folder|
 |`test`|Run all unit tests|
 |`eject`|Eject from React Scripts. Not recommended to use unless you aren't satisfied with the build tools and config choices.<br>**Note: this is a one-way operation. Once you `eject`, you can’t go back!**|
-
-## Coding Style Points
-- Prettier: should be used at all times, called as part of commit hook along with Husky
-    - Currently, the only prettier setting is `tabwidth=4`, will experiment with more features
-- Husky: ensures that commit messages with Conventional Commit's guidelines (almost as important as good code!)
-- Commitizen: an easy cli interface for commiting, follow conventional commit's standards too
-- File locations: all components -> src/components, all stylesheets -> src/stylesheets and all api calls -> api/server.js
-- File endings: all React components should be .jsx to indicate which files contain HTML/components to be rendered
-- Module imports: when importing modules, consumers must ensure they are not adding excess complexity or weight
-    - Also, imports MUST include file extension and DO NOT import multiple times, additionally, users should avoid using `import * as x from y`
-- File exports: many files will have their own exports, this should be expressed in one of two ways:- (do not use default)
-    - `export class LoginPage extends Component {`
-    - `const LoginPage = ({ loggedIn }) => {` ... `export LoginPage`
-- Mutable file export: exported variables should not be mutated outside module initialisation
-    - alternatives include exporting a constant reference to an object that has mutable fields or exporting accessor functions for mutable data
-- Spacing: around operators, around colons (in most cirumstances, including conditional rendering), around braces, DO NOT place before commas
-- Line breaks: each statement should get a newline (unless extremely short and easy to read)
-- Braces: place braces on newline for function definitions only, keep after class/object definition
-- Variable declaration: one per line, split over newlines
-- Key-value Objects: should have newline for each key-value pair, quotes around string values, brackets on newlines at start and end
-- Props: should be camel cased with lowercase first letter, omit value when prop is explicitly true
-- Refs: always use callbacks!
 
 ## Branching Strategy
 ### WIP

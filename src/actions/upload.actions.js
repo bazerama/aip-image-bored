@@ -1,4 +1,4 @@
-import { uploadImage } from '../services/uploadimage.service';
+import { uploadImage, uploadReply } from '../services/upload.service';
 
 /*
  **  Some of the following code utilises the snippet:
@@ -16,7 +16,21 @@ export function uploadImageAction(file, user) {
                 dispatch({ type: 'upload-image-success', image: image });
             },
             error => {
-                dispatch({ type: 'upload-image-failure', uploadError: error });
+                dispatch({ type: 'upload-image-failure', error: error });
+            }
+        );
+    };
+}
+
+export function uploadReplyAction(depth, parentId, file, user) {
+    return dispatch => {
+        dispatch({ type: 'upload-reply-request' });
+        uploadReply(depth, parentId, file, user).then(
+            reply => {
+                dispatch({ type: 'upload-reply-success', reply: reply });
+            },
+            error => {
+                dispatch({ type: 'upload-reply-failure', error: error });
             }
         );
     };

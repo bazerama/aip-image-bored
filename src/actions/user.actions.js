@@ -1,6 +1,5 @@
 import { history } from '../services/history.service';
 import { authenticate, login, register } from '../services/user.service';
-import { react } from '../services/forumpost.service';
 
 /*
  **  Some of the following code utilises the snippet:
@@ -71,24 +70,5 @@ export function logoutAction() {
         dispatch({ type: 'hide-login-message' });
         dispatch({ type: 'hide-register-message' });
         localStorage.removeItem('user');
-    };
-}
-
-export function reactAction(reactionId, postId) {
-    return dispatch => {
-        dispatch({ type: 'react' });
-        react(reactionId, postId).then(
-            reaction => {
-                /*setTimeout(() => {
-                    // success here
-                }, 1000);*/
-            },
-            error => {
-                dispatch({ type: 'react-error', error: error });
-                setTimeout(() => {
-                    dispatch({ type: 'hide-reaction-error' });
-                }, 4000);
-            }
-        );
     };
 }

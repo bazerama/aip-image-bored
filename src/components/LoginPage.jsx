@@ -1,5 +1,5 @@
 import React from 'react';
-import { loginAction } from '../../actions/user.actions';
+import { loginAction } from '../actions/user.actions';
 import { Card, Form, Input, Label, Container, Header, Button, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
@@ -90,7 +90,7 @@ class LoginPage extends React.Component {
                         {loginSuccessful ? (
                             <Message positive>
                                 <Message.Header>Successfully logged in!</Message.Header>
-                                <p>You will be redirected to the Home Page in a few seconds...</p>
+                                <p>You will now be redirected to the front page</p>
                             </Message>
                         ) : null}
                     </Card>

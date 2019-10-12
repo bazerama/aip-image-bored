@@ -6,6 +6,19 @@
  **  my API and get the text(), then process the response.
  */
 
+export function getLoggedInUser() {
+    const currentUser = localStorage.getItem('user');
+    if (currentUser == null) {
+        // modify this to become a global const.
+        return Promise.reject('user not authenticated');
+    }
+
+    const userJson = JSON.parse(currentUser);
+    var username = userJson.user;
+
+    return username;
+}
+
 export async function authenticate() {
     const currentUser = localStorage.getItem('user');
 
@@ -20,7 +33,7 @@ export async function authenticate() {
         body: JSON.stringify({ user: currentUser }),
     };
 
-    const response = await fetch('http://localhost:5000/api/authenticate', request);
+    const response = await fetch(process.env.REACT_APP_SEARCH_API_ENV + '/api/authenticate', request);
     const user = await handleResponse(response);
 
     if (!user.success) {
@@ -40,7 +53,7 @@ export async function login(username, password) {
         body: JSON.stringify({ username: username, password: password }),
     };
 
-    const response = await fetch('http://localhost:5000/api/login', request);
+    const response = await fetch(process.env.REACT_APP_SEARCH_API_ENV + '/api/login', request);
     const user = await handleResponse(response);
 
     if (!user.success) {
@@ -58,7 +71,7 @@ export async function register(username, password, email) {
         body: JSON.stringify({ username: username, password: password, email: email }),
     };
 
-    const response = await fetch('http://localhost:5000/api/register', request);
+    const response = await fetch(process.env.REACT_APP_SEARCH_API_ENV + '/api/register', request);
     const user = await handleResponse(response);
 
     if (!user.success) {
