@@ -391,9 +391,9 @@ app.listen(API_PORT, () => {
         if (error) {
             throw error;
         }
-        database = client.db('tom');
+        database = client.db('mongodb-community');
         usersCollection = database.collection(USERS_COLLECTION);
         imagesCollection = database.collection(IMAGES_COLLECTION);
-        console.log(`Connected to 'tom'!`);
+        console.log(`Connected to 'mongodb-community'!`);
     });
 });

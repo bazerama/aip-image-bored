@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import formatDistance from 'date-fns/formatDistance';
-import ReactionItems from './ReactionItems';
+import ReactionItems from '../responses/ReactionItems';
 import { Segment, Grid, Card, Image, Header, Icon, Button } from 'semantic-ui-react';
 // import { getLoggedInUser } from '../services/user.service';
 

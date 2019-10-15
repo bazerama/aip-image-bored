@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './HomePage.css';
 import { Container, Header, Grid } from 'semantic-ui-react';
-import { authenticateAction } from '../actions/user.actions';
-import { getThreadsAction } from '../actions/forumpost.actions';
-import CommentsModal from './CommentsModal';
-import ReplyModal from './ReplyModal';
-import UploadModal from './UploadModal';
-import ForumPostCards from './ForumPostCards';
-import MenuBar from './MenuBar';
-import Leaderboard from './Leaderboard';
+import { authenticateAction } from '../../actions/user.actions';
+import { getThreadsAction } from '../../actions/forumpost.actions';
+import CommentsModal from '../responses/CommentsModal';
+import ReplyModal from '../responses/ReplyModal';
+import UploadModal from '../uploads/UploadModal';
+import ForumPostCards from '../forum/ForumPostCards';
+import MenuBar from '../menu/MenuBar';
+import Leaderboard from '../leaderboard/Leaderboard';
 
 class HomePage extends React.Component {
     constructor(props) {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Grid, Header, Button } from 'semantic-ui-react';
-import { uploadImageAction } from '../actions/upload.actions';
-import { getLoggedInUser } from '../services/user.service';
+import { uploadImageAction } from '../../actions/upload.actions';
+import { getLoggedInUser } from '../../services/user.service';
 
 /*
  **  Some of this code is a customised version of Mosh's code and tutorial on Image Uploading here:

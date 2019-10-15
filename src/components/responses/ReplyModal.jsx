@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Grid, Segment, Image, Header, Icon, Button } from 'semantic-ui-react';
-import { uploadReplyAction } from '../actions/upload.actions';
-import { getLoggedInUser } from '../services/user.service';
+import { uploadReplyAction } from '../../actions/upload.actions';
+import { getLoggedInUser } from '../../services/user.service';
 
 const ReplyModal = props => {
     const [file, setFile] = useState({ image: null, imageSelected: false });

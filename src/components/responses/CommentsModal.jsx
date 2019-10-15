@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Image, Divider, Header, Comment, Icon, Card, Segment, Button } from 'semantic-ui-react';
-import { getRepliesAction } from '../actions/forumpost.actions';
-import Reply from './Reply';
+import { getRepliesAction } from '../../actions/forumpost.actions';
+import Reply from '../responses/Reply';
 
 const CommentsModal = props => {
     const [thread, setThread] = useState(null);
