@@ -6,7 +6,6 @@ import Reply from '../responses/Reply';
 
 const CommentsModal = props => {
     const [thread, setThread] = useState(null);
-    // const replyComponents = [];
 
     useEffect(() => {
         if (props.showCommentsModal) {
