@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import HomePage from './components/HomePage';
-import LoginPage from './components/LoginPage';
-import RegisterPage from './components/RegisterPage';
+import HomePage from './components/home/HomePage';
+import LoginPage from './components/login/LoginPage';
+import RegisterPage from './components/register/RegisterPage';
 import { Router, Route } from 'react-router-dom';
 import { history } from './services/history.service';
 

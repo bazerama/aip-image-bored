@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Grid, Button, Header } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { logoutAction } from '../actions/user.actions';
+import { logoutAction } from '../../actions/user.actions';
 
 const MenuBar = props => {
     function handleLogout(event) {
