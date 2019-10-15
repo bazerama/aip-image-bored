@@ -8,23 +8,13 @@ import { Image, Comment } from 'semantic-ui-react';
  */
 
 function Reply({ reply, isLoggedIn, openReplyModal }) {
-    // const [commentIsHidden, setCommentIsHidden] = useState(true);
     const nestedReplies = (reply.replies || []).map(reply => {
         return <Comment key={reply.replyId} reply={reply} type="child" />;
     });
 
-    // function handleCommentClick(event) {
-    //     if (commentIsHidden) {
-    //         setCommentIsHidden(false);
-    //     } else {
-    //         setCommentIsHidden(true);
-    //     }
-    // }
-
     var timeDistance = formatDistance(Date.now(), reply.timestamp);
 
     return (
-        /* collapsed={commentIsHidden} */
         <Comment.Group collapsed={false} size="large">
             <Comment.Content>
                 <Comment.Author as="a">{reply.userId}</Comment.Author>

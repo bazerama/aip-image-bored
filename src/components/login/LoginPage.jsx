@@ -13,7 +13,6 @@ class LoginPage extends React.Component {
         };
     }
 
-    // TODO: add better validation
     validateForm = () => {
         return this.state.username.length > 0 && this.state.password.length > 0;
     };

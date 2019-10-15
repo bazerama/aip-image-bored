@@ -9,7 +9,6 @@
 export function getLoggedInUser() {
     const currentUser = localStorage.getItem('user');
     if (currentUser == null) {
-        // modify this to become a global const.
         return Promise.reject('user not authenticated');
     }
 
@@ -23,7 +22,6 @@ export async function authenticate() {
     const currentUser = localStorage.getItem('user');
 
     if (currentUser == null) {
-        // modify this to become a global const.
         return Promise.reject('user not authenticated');
     }
 
@@ -40,9 +38,6 @@ export async function authenticate() {
         localStorage.removeItem('user');
         return Promise.reject(user.error);
     }
-
-    // modify this to pass some more meaningful auth data
-    // server.js only passes user._id from mongo
     return Promise.resolve(user);
 }
 

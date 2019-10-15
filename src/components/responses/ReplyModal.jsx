@@ -6,8 +6,6 @@ import { getLoggedInUser } from '../../services/user.service';
 
 const ReplyModal = props => {
     const [file, setFile] = useState({ image: null, imageSelected: false });
-    // const [imageUploaded, setImageUploaded] = useState(false);
-    // const [imageUploading, setImageUploading] = useState(false);
     const { success, isUploading } = props;
 
     useEffect(() => {
