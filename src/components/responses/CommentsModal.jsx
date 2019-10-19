@@ -4,9 +4,20 @@ import { Modal, Image, Divider, Header, Comment, Icon, Card, Segment, Button } f
 import { getRepliesAction } from '../../actions/forumpost.actions';
 import Reply from '../responses/Reply';
 
+/**
+ * This login page is located at /login by itself. It renders an autofill compatible form
+ * so that users can enter their login information. The state is used to montitor updates,
+ * then the loginAction is dispatched when a user clicks the Submit button
+ */
+
 const CommentsModal = props => {
     const [thread, setThread] = useState(null);
 
+    /**
+     * This useEffect statement from here: https://reactjs.org/docs/hooks-effect.html#recap
+     * This particular effect is "fire and forget" so we don't need to return a function
+     * It runs each time after render (regardless of whether it updated or mounted)
+     */
     useEffect(() => {
         if (props.showCommentsModal) {
             const { threads } = props;
@@ -19,6 +30,11 @@ const CommentsModal = props => {
         }
     });
 
+    /**
+     * This code utilises logic from user Francisco Aquino to recursively render commments
+     * (but sadly only at one level due to the database structure)
+     * Source: https://stackoverflow.com/questions/28205317/how-to-render-child-components-in-react-js-recursively
+     */
     return thread && props.success && thread.replies.length > 0 ? (
         <Modal size="large" open={props.showCommentsModal} onClose={props.closeCommentsModal}>
             <Image src={thread.imageUrl} fluid />

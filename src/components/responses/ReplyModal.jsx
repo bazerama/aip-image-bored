@@ -4,6 +4,15 @@ import { Modal, Grid, Segment, Image, Header, Icon, Button } from 'semantic-ui-r
 import { uploadReplyAction } from '../../actions/upload.actions';
 import { getLoggedInUser } from '../../services/user.service';
 
+/**
+ * This component handles a user replying to an image on the board. To prevent users
+ * from stacking replies and clogging the database, many buttons are marked as 'loading'
+ * and blocked from clicking when the props isUploading is true (after dispatch of request).
+ * Additionally, the page is reloaded on success, in order to update the post with the new reply
+ * Currently the modal does not reopen after reload, so obviously a rerender would be preferable
+ * to a full page reload, in order to keep the modal open
+ */
+
 const ReplyModal = props => {
     const [file, setFile] = useState({ image: null, imageSelected: false });
     const { success, isUploading } = props;

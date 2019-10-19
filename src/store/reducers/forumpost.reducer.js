@@ -15,6 +15,12 @@ const initialStateThreads = {
     threadsErrorMessage: '',
 };
 
+/**
+ * This reducer pattern I got from another project I worked on
+ * https://redux.js.org/basics/reducers#splitting-reducers
+ * This reducer gets threads and replies, it also updates reactions
+ */
+
 export function getThreads(state = initialStateThreads, action) {
     switch (action.type) {
         case GET_THREADS_REQUEST:

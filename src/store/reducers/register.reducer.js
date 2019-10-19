@@ -6,6 +6,12 @@ export const HIDE_MESSAGE = 'hide-register-message';
 let user = JSON.parse(localStorage.getItem('user'));
 const initialState = user ? { registerSuccessful: true, user } : {};
 
+/**
+ * This reducer pattern I got from another project I worked on
+ * https://redux.js.org/basics/reducers#splitting-reducers
+ * This reducer registers a new user
+ */
+
 function register(state = initialState, action) {
     switch (action.type) {
         case REGISTER_REQUEST:

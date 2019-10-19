@@ -11,6 +11,12 @@ import ForumPostCards from '../forum/ForumPostCards';
 import MenuBar from '../menu/MenuBar';
 import Leaderboard from '../leaderboard/Leaderboard';
 
+/**
+ * The landing page for the application at '/'
+ * This component contains most of the functions to show and hide the modals, including Reply, Comment and Upload
+ * Various props are passed to the child components, in order for them to call the methods here in their parent
+ */
+
 class HomePage extends React.Component {
     constructor(props) {
         super(props);
@@ -69,16 +75,14 @@ class HomePage extends React.Component {
 
         return (
             <div>
-                {showCommentsModal ? (
-                    <CommentsModal
-                        threads={threads}
-                        isLoggedIn={isLoggedIn}
-                        showCommentsModal={showCommentsModal}
-                        commentsModalId={commentsModalId}
-                        openReplyModal={this.openReplyModal}
-                        closeCommentsModal={this.closeCommentsModal}
-                    />
-                ) : null}
+                <CommentsModal
+                    threads={threads}
+                    isLoggedIn={isLoggedIn}
+                    showCommentsModal={showCommentsModal}
+                    commentsModalId={commentsModalId}
+                    openReplyModal={this.openReplyModal}
+                    closeCommentsModal={this.closeCommentsModal}
+                />
                 <ReplyModal
                     showReplyModal={showReplyModal}
                     depth={depth}

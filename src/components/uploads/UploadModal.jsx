@@ -4,9 +4,19 @@ import { Modal, Grid, Header, Button } from 'semantic-ui-react';
 import { uploadImageAction } from '../../actions/upload.actions';
 import { getLoggedInUser } from '../../services/user.service';
 
-/*
- **  Some of this code is a customised version of Mosh's code and tutorial on Image Uploading here:
- **  https://programmingwithmosh.com/javascript/react-file-upload-proper-server-side-nodejs-easy/
+/**
+ * This component handles a user uploading a brand new image to the board
+ * To prevent users from stacking uploads and clogging the database, many
+ * buttons are marked as 'loading' and blocked from clicking when the props
+ * isUploading is true (after dispatch of request). Additionally, the page
+ * is reloaded on success, in order to update the homepage with the new image
+ *
+ * This could be improved by updating HomePage's props of 'threads' and utilising
+ * useEffect's array checks: https://stackoverflow.com/questions/55228102/react-hook-useeffect-dependency-array
+ * However, this has not yet been completed
+ *
+ * Some of this code is a customised version of Mosh's code and tutorial on Image Uploading here:
+ * https://programmingwithmosh.com/javascript/react-file-upload-proper-server-side-nodejs-easy/
  */
 
 const UploadModal = props => {

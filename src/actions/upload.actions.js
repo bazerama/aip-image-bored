@@ -1,11 +1,11 @@
 import { uploadImage, uploadReply } from '../services/upload.service';
 
-/*
- **  Some of the following code utilises the snippet:
- **      return dispatch => { ... }
- **  This is taken from https://github.com/reduxjs/redux-thunk and allows
- **  for action creators to return a function instead of an action.
- **  This also allows for us to call async functions, like checkCredentials()
+/**
+ * Some of the following code utilises the snippet:
+ *      return dispatch => { ... }
+ * This is taken from https://github.com/reduxjs/redux-thunk and allows
+ * for action creators to return a function instead of an action.
+ * This also helps with calls to async functions, like checkCredentials()
  */
 
 export function uploadImageAction(file, user) {

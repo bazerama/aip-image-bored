@@ -2,6 +2,12 @@ import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import LeaderboardLabel from './LeaderboardLabel';
 
+/**
+ * WIP: This component is currently a placeholder
+ * The Front End is complete, however static values for users have been set below
+ * Each user in this leaderboard also has a LeaderboardLabel with custom props
+ */
+
 const Leaderboard = () => {
     return (
         <Menu vertical>

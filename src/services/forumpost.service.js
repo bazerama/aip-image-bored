@@ -1,5 +1,11 @@
 import { handleResponse } from './user.service';
 
+/**
+ * This service handle getting threads, replies and sending reactions
+ * It will fetch from the API and return the applicable data. It also
+ * utilises await and promises to ensure errors do not occut
+ */
+
 export async function getThreads() {
     const request = {
         method: 'GET',

@@ -3,20 +3,16 @@ import _ from 'lodash';
 import formatDistance from 'date-fns/formatDistance';
 import ReactionItems from '../responses/ReactionItems';
 import { Segment, Grid, Card, Image, Header, Icon, Button } from 'semantic-ui-react';
-// import { getLoggedInUser } from '../services/user.service';
+
+/**
+ * This component uses lodash to render the threads on the image board once they have loaded
+ * Threads are pushed to an array of cards, with buttons and reactions attached
+ * NOTE: each thread is a root thread (i.e. one newly posted image to the board)
+ */
 
 const ForumPostCards = props => {
-    // isAdmin = props
     const { openReplyModal, openCommentsModal, threads, isLoading, threadsErrorMessage, isLoggedIn } = props;
     var cards = [];
-
-    // function getUser(userId) {
-    //     if (getLoggedInUser() === userId) {
-    //         return "you";
-    //     } else {
-    //         return userId;
-    //     }
-    // }
 
     if (threadsErrorMessage != null) {
         console.log(threadsErrorMessage);

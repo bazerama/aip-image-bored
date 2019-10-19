@@ -1,14 +1,18 @@
-/*
- **  The following code utilises the async/await pattern with fetch()
- **  This is influenced by this tutorial:
- **  https://dev.to/johnpaulada/synchronous-fetch-with-asyncawait
- **  John Paul Ada's code has allowed me to asynchronously fetch data from
- **  my API and get the text(), then process the response.
+/**
+ * This service handles authentication, login, registration and
+ * fetching current user. It uses promises for async functions
+ * that fetch from the API
+ *
+ * The following code utilises the async/await pattern with fetch()
+ * https://dev.to/johnpaulada/synchronous-fetch-with-asyncawait
+ * John Paul Ada's code has allowed me to asynchronously fetch data from
+ * my API and get the text(), then process the response.
  */
 
 export function getLoggedInUser() {
     const currentUser = localStorage.getItem('user');
     if (currentUser == null) {
+        // WIP: needs to be changed to return an error, not a promise rejection
         return Promise.reject('user not authenticated');
     }
 

@@ -18,6 +18,12 @@ const initialStateReply = {
     reply: null,
 };
 
+/**
+ * This reducer pattern I got from another project I worked on
+ * https://redux.js.org/basics/reducers#splitting-reducers
+ * This reducer uploads images and replies
+ */
+
 export function uploadImage(state = initialStateImage, action) {
     switch (action.type) {
         case UPLOAD_IMAGE_REQUEST:

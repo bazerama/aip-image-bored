@@ -6,6 +6,13 @@ import * as EmailValidator from 'email-validator';
 import zxcvbn from 'zxcvbn';
 import MenuBar from '../menu/MenuBar';
 
+/**
+ * Feature completed by Ruby Rhind
+ *
+ * This Registration Page takes inspiration from Login but implements additionally validation
+ * for emails, passwords, usernames etc.
+ */
+
 class RegisterPage extends React.Component {
     constructor(props) {
         super(props);

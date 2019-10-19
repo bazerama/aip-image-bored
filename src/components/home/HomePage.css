@@ -1,3 +1,8 @@
+/*
+    Some CSS overrides that have been kept separate from Semantic UI
+    Should eventually be moved to Semantic UI folder in overrides
+*/
+
 .reaction-div {
     display: inline-block;
     margin: 5px;

@@ -1,9 +1,10 @@
-/*
- **  The basic layout of this express API was written by me and co-written
- **  by my teammate, Jayden Pollard, during the Software Development Studio
- **  in Autumn 2019. Although the repository is private, I have received
- **  his express permission to use this code as a basis. By the time this
- **  API is finished, it will likely look quite different.
+/**
+ * The basic layout of this express API was written by me and co-written
+ * by my teammate, Jayden Pollard, during the Software Development Studio
+ * in Autumn 2019. Although the repository is private, I have received
+ * his express permission to use this code as a basis.
+ *
+ * This API is now fully customised with almost completely different code and structure
  */
 
 var MongoClient = require('mongodb').MongoClient;
@@ -41,8 +42,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // MongoDB database
-// const CONNECTION_URL =
-// 'mongodb+srv://admin:7s53Z6xx81lbIVsc@terribleoceanmissiles-qpjhz.mongodb.net/test?retryWrites=true&w=majority';
 const CONNECTION_URL = 'mongodb://localhost:27017/';
 const USERS_COLLECTION = 'users';
 const IMAGES_COLLECTION = 'images';
@@ -59,7 +58,7 @@ const IMAGE_LOADING_ERROR_MESSAGE = 'Sorry, this image could not be loaded';
 const IMAGE_UPLOAD_ERROR_MESSAGE = 'Image could not be uploaded, please try again';
 const REACTION_ERROR_MESSAGE = 'Reaction could not be recorded, please try again';
 
-// takes the secret from process.env.JWT_SECRET
+// takes the secret from process.env.JWT_SECRET then signs JWT with this
 function generateToken(user) {
     var payload = {
         _id: user._id,
@@ -70,7 +69,7 @@ function generateToken(user) {
 }
 
 /*
- **  Nice little snipet for creating image uploads by Fabiano, Medium article + code here:
+ **  Params for S3 upload by Fabiano, Medium article + code here:
  **  https://medium.com/@fabianopb/upload-files-with-node-and-react-to-aws-s3-in-3-steps-fdaa8581f2bd
  */
 
@@ -236,9 +235,10 @@ router.post('/getReplies', (req, res) => {
     return res.status(200).json(repliesThreads);
 });
 
+// WIP: would allow for user reactions to be updated in real time after hitting /react
 router.options('/getReactions', cors());
 router.post('/getReactions', (req, res) => {
-    //
+    // WIP
 });
 
 router.options('/react', cors());
@@ -329,7 +329,7 @@ router.post('/uploadReply', (req, res) => {
                     queryBack += ' }';
                 }
             }
-            // \"root\": \"false\",
+
             if (oldDepth > 1) {
                 selector = '{ "replyId": ';
             } else {
@@ -391,9 +391,9 @@ app.listen(API_PORT, () => {
         if (error) {
             throw error;
         }
-        database = client.db('mongodb-community');
+        database = client.db('tom');
         usersCollection = database.collection(USERS_COLLECTION);
         imagesCollection = database.collection(IMAGES_COLLECTION);
-        console.log(`Connected to 'mongodb-community'!`);
+        console.log(`Connected to 'tom'!`);
     });
 });

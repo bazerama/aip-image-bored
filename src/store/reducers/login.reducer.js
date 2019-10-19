@@ -6,6 +6,12 @@ export const HIDE_MESSAGE = 'hide-login-message';
 let user = JSON.parse(localStorage.getItem('user'));
 const initialState = user ? { loginSuccessful: true, user } : {};
 
+/**
+ * This reducer pattern I got from another project I worked on
+ * https://redux.js.org/basics/reducers#splitting-reducers
+ * This reducer logs in an existing user
+ */
+
 function login(state = initialState, action) {
     switch (action.type) {
         case LOGIN_REQUEST:

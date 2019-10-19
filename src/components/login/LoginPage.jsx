@@ -3,6 +3,12 @@ import { loginAction } from '../../actions/user.actions';
 import { Card, Form, Input, Label, Container, Header, Button, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
+/**
+ * This login page is located at /login by itself. It renders an autofill compatible form
+ * so that users can enter their login information. The state is used to montitor updates,
+ * then the loginAction is dispatched when a user clicks the Submit button
+ */
+
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
