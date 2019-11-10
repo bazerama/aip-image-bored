@@ -5,5 +5,5 @@ My groupmates created the Registration page, made style checking mechanisms and 
 
 These can all be seen in the commit logs<br><br>
 
-**According to the Subject Coordinator, I commited 83% of the changes and created 79% of unique lines<br>
-**I received a 40/40 grade for this assessment and achieved a *results pending* for this subject (Advanced Internet Programming)
+**According to the Subject Coordinator, I commited 83% of the changes and created 79% of unique lines**<br>
+**I received a 40/40 grade for this assessment and achieved a *results pending* for this subject (Advanced Internet Programming)**
