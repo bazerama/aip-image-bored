@@ -11,7 +11,7 @@
     "dotenv": "^8.1.0",
     "email-validator": "^2.0.4",
     "express": "^4.17.1",
-    "file-type": "^12.3.0",
+    "file-type": "^16.5.4",
     "history": "^4.10.1",
     "install": "^0.13.0",
     "jsonwebtoken": "^8.5.1",
